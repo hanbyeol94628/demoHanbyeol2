@@ -3,26 +3,6 @@
 
 <%@ include file="../include/head.jsp" %>
 
-<!--
-BODY TAG OPTIONS:
-=================
-Apply one or more of the following classes to get the
-desired effect
-|---------------------------------------------------------|
-| SKINS         | skin-blue                               |
-|               | skin-black                              |
-|               | skin-purple                             |
-|               | skin-yellow                             |
-|               | skin-red                                |
-|               | skin-green                              |
-|---------------------------------------------------------|
-|LAYOUT OPTIONS | fixed                                   |
-|               | layout-boxed                            |
-|               | layout-top-nav                          |
-|               | sidebar-collapse                        |
-|               | sidebar-mini                            |
-|---------------------------------------------------------|
--->
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
@@ -52,10 +32,40 @@ desired effect
     <section class="content container-fluid">
     
     	<div class="col-lg-12">
-    	여기부터! 리스트@!
-    
-    
-    
+   			<div class="box box-primay">
+				<div class="box-header with-border">
+					<h3 class="box-title">게시글 목록</h3>
+				</div>
+				<div class="box-body">
+					<table class="table table-bordered">
+						<tbody>
+							<tr>
+								<th style="width:30px;">#</th>
+								<th>제목</th>
+								<th style="width:100px;">작성자</th>
+								<th style="width:150px;">작성시간</th>
+								<th style="width:60px;">조회</th>
+							</tr>
+							<c:forEach items="${articles}" var="article">
+							<tr>
+								<td>${article.articleNo}</td>
+								<td><a href="${path}/article/read?articleNo=${article.articleNo}">${article.title}</td>
+								<td>${article.writer}</td>
+								<td><fmt:formatDate value="${article.regDate}" pattern="yyyy-MM-dd a HH:mm" /></td>
+								<td><span class="badge bg-red">${article.viewCnt}</span></td>
+							</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+				<div class="boc-footer">
+					<div class="pull-right">
+						<button type="button" class="btn btn-success btn-flat" id="writeBtn">
+							<i class="fa fa-pencil"></i>글쓰기
+						</button>
+					</div>
+				</div>
+   			</div>
 	</div>
 	<!-- /.content-wrapper -->
 
