@@ -48,8 +48,8 @@
 							</tr>
 							<c:forEach items="${articles}" var="article">
 							<tr>
-								<td>${article.articleNo}</td>
-								<td><a href="${path}/article/read?articleNo=${article.articleNo}">${article.title}</a></td>
+								<td>${article.article_no}</td>
+								<td><a href="${path}/article/read?article_no=${article.article_no}">${article.title}</a></td>
 								<td>${article.writer}</td>
 								<td><fmt:formatDate value="${article.regDate}" pattern="yyyy-MM-dd a HH:mm" /></td>
 								<td><span class="badge bg-red">${article.viewCnt}</span></td>
@@ -58,7 +58,7 @@
 						</tbody>
 					</table>
 				</div>
-				<div class="boc-footer">
+				<div class="box-footer">
 					<div class="pull-right">
 						<button type="button" class="btn btn-success btn-flat" id="writeBtn">
 							<i class="fa fa-pencil"></i>글쓰기

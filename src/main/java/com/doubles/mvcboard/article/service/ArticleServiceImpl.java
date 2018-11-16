@@ -25,8 +25,8 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
-	public ArticleVO read(Integer articleNo) throws Exception {
-		return articleDAO.read(articleNo);
+	public ArticleVO read(Integer article_no) throws Exception {
+		return articleDAO.read(article_no);
 	}
 
 	@Override
@@ -35,12 +35,20 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
-	public void delete(Integer articleNo) throws Exception {
-		articleDAO.delete(articleNo);
+	public void delete(Integer article_no) throws Exception {
+		articleDAO.delete(article_no);
 	}
 
 	@Override
 	public List<ArticleVO> listAll() throws Exception {
+		
+		List<ArticleVO> k = articleDAO.listAll();
+	
+		
+		for(ArticleVO i : k) {
+			System.out.println(i);
+		}
+		
 		return articleDAO.listAll();
 	}
 

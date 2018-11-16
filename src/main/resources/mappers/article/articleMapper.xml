@@ -5,7 +5,7 @@
 		
 <mapper namespace="com.doubles.mvcboard.mappers.article.ArticleMapper">
 
-	<insert id="create">
+	<insert id="create" parameterType="ArticleVO">
 		INSERT INTO tbl_article (
 			article_no
 			, title
@@ -14,7 +14,7 @@
 			, regdate
 			, viewcnt
 		) VALUES (
-			#{articleNo}
+			#{article_no}
 			, #{title}
 			, #{content}
 			, #{writer}
@@ -23,7 +23,7 @@
 		)
 	</insert>	
 	
-	<select id="read" resultMap="ArticleResultMap">
+	<select id="read" parameterType="int" resultMap="ArticleResultMap">
 		SELECT
 			article_no
 			, title
@@ -33,23 +33,23 @@
 			, viewcnt
 		FROM
 			tbl_article
-		WHERE article_no = #{articleNo}
+		WHERE article_no = #{article_no}
 	</select>
 
-	<update id="update">
+	<update id="update" parameterType="ArticleVO">
 		UPDATE tbl_article
 		SET
 			title = #{title}
 			, content = #{content}
 		WHERE
-			article_no = #{articleNo}
+			article_no = #{article_no}
 	</update>	
 	
 	<update id="view"></update>
 	
-	<delete id="delete">
+	<delete id="delete" parameterType="ArticleVO">
 		DELETE FROM tbl_article
-		WHERE article_no = #{articleNo}
+		WHERE article_no = #{article_no}
 	</delete>
 	
 	<select id="listAll" resultType="ArticleVO">
@@ -68,7 +68,7 @@
 	</select>
 	
 	<resultMap id="ArticleResultMap" type="ArticleVO">
-		<id property="articleNo" column="article_no" />
+		<id property="article_no" column="article_no" />
 		<result property="title" column="title" />
 		<result property="content" column="content" />
 		<result property="writer" column="writer" />

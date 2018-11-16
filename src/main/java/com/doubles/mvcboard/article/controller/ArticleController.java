@@ -51,23 +51,28 @@ public class ArticleController {
 		logger.info("list...");
 		model.addAttribute("articles", articleService.listAll());
 		
+		for(ArticleVO i:articleService.listAll()) {
+			System.out.println(i.getArticle_no());
+			System.out.println(i.getTitle());
+		}
+		
 		return "/article/list";
 	}
 	
 	// 조회 페이지 이동
 	@RequestMapping(value="/read", method=RequestMethod.GET)
-	public String read(@RequestParam("articleNo") int articleNo, Model model) throws Exception{
+	public String read(@RequestParam("article_no") int article_no, Model model) throws Exception{
 		logger.info("read...");
-		model.addAttribute("article", articleService.read(articleNo));
+		model.addAttribute("article", articleService.read(article_no));
 		return "/article/read";
 		
 	}
 	
 	// 수정 페이지 이동
 	@RequestMapping(value="/modify", method=RequestMethod.GET)
-	public String modifyGET(@RequestParam("articleNo") int articleNo, Model model) throws Exception{
+	public String modifyGET(@RequestParam("article_no") int article_no, Model model) throws Exception{
 		logger.info("modifyGet...");
-		model.addAttribute("article", articleService.read(articleNo));
+		model.addAttribute("article", articleService.read(article_no));
 		return "/article/modify";
 	}
 	
@@ -82,9 +87,9 @@ public class ArticleController {
 	
 	// 삭제 처리
 	@RequestMapping(value="/remove", method=RequestMethod.POST)
-	public String remove(@RequestParam("articleNo") int articleNo, RedirectAttributes redirectAttributes) throws Exception{
+	public String remove(@RequestParam("article_no") int article_no, RedirectAttributes redirectAttributes) throws Exception{
 		logger.info("remove...");
-		articleService.delete(articleNo);
+		articleService.delete(article_no);
 		redirectAttributes.addFlashAttribute("msg", "delSuccess");
 		return "redirect:/article/list";
 	}

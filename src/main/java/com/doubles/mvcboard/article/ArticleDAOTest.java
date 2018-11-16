@@ -32,13 +32,13 @@ public class ArticleDAOTest {
 	
 	@Test
 	public void testRead() throws Exception {
-		logger.info(articleDAO.read(2).toString());
+		logger.info(articleDAO.read(3).toString());
 	}
 	
 	@Test
 	public void testUpdate() throws Exception {
 		ArticleVO article = new ArticleVO();
-		article.setArticleNo(1);
+		article.setArticle_no(1);
 		article.setTitle("글 수정 테스트 제목");
 		article.setContent("글 수정 테스트 내용");
 		articleDAO.update(article);

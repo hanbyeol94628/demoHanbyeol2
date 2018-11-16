@@ -58,7 +58,7 @@ desired effect
 					<h3 class="box-title">게시글 작성</h3>
 				</div>
 				<div class="box-body">
-					<input type="hidden" name="articleNo" value="${article.articleNo}">
+					<input type="hidden" name="article_no" value="${article.article_no}">
 					<div class="form-group">
 						<label for="title">제목</label>
 						<input class="form-control" id="title" name="title" placeholder="제목을 입력하세요" value="${article.title}">

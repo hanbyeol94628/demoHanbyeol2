@@ -27,8 +27,8 @@ public class ArticleDAOImpl implements ArticleDAO {
 	}
 
 	@Override
-	public ArticleVO read(Integer articleNo) throws Exception {
-		return sqlSession.selectOne(NAMESPACE + ".read", articleNo);
+	public ArticleVO read(Integer article_no) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".read", article_no);
 	}
 
 	@Override
@@ -37,8 +37,8 @@ public class ArticleDAOImpl implements ArticleDAO {
 	}
 
 	@Override
-	public void delete(Integer articleNo) throws Exception {
-		sqlSession.delete(NAMESPACE + ".delete", articleNo);
+	public void delete(Integer article_no) throws Exception {
+		sqlSession.delete(NAMESPACE + ".delete", article_no);
 	}
 
 	@Override
