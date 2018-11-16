@@ -2,11 +2,11 @@
 <!-- REQUIRED JS SCRIPTS -->
 
 <!-- jQuery 3 -->
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
-<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
-<script src="dist/js/adminlte.min.js"></script>
+<script src="/dist/js/adminlte.min.js"></script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
@@ -24,12 +24,17 @@
 </script>
 
 <script>
-	${document}.ready(function(){
+	$(document).ready(function(){
 		
 		var formObj = $("form[role='form']");
 		console.log(formObj);
 		
-		${".modBtn"}.on("click", function(){
+		$("#writeBtn").on("click", function(){
+			self.location="/article/write";
+		});
+		
+		
+		$(".modBtn").on("click", function(){
 			formObj.attr("action", "/article/modify");
 			formObj.attr("method", "get");
 			formObj.submit();
@@ -44,16 +49,8 @@
 			self.location="/article/list"
 		});
 		
-	});
-</script>
-
-<script>
-	${document}.ready(function(){
 		
-		var formObj = $("form[role='form']");
-		console.log(formObj);
-		
-		${".modBtn"}.on("click", function(){
+		$(".modifyBtn").on("click", function(){
 			formObj.submit();
 		});
 		
@@ -61,9 +58,6 @@
 			history.go(-1);
 		});
 		
-		$(".listBtn").on("click", function(){
-			self.location="/article/list"
-		});
 		
 	});
 </script>

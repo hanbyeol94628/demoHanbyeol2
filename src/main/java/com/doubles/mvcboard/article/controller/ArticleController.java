@@ -28,7 +28,7 @@ public class ArticleController {
 	}
 	
 	// 등록 페이지 이동
-	@RequestMapping(value="/writer", method=RequestMethod.GET)
+	@RequestMapping(value="/write", method=RequestMethod.GET)
 	public String writeGET() {
 		logger.info("write GET...");
 		return "/article/write";

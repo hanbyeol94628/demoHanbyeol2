@@ -52,7 +52,7 @@ desired effect
     <section class="content container-fluid">
     
     <div class="col-lg-12">
-		<form role="form" id="writeForm" method="post" action="%{path}/article/write">
+		<form role="form" id="writeForm" method="post" action="${path}/article/write">
 			<div class="box box-primary">
 				<div class="box-header with-border">
 					<h3 class="box-title">게시글 작성</h3>

@@ -4,16 +4,16 @@ import java.util.Date;
 
 public class ArticleVO {
 	
-	private Integer articleNo;
+	private int articleNo;
 	private String title;
 	private String content;
 	private String writer;
 	private Date regDate;
 	private int viewCnt;
-	public Integer getArticleNo() {
+	public int getArticleNo() {
 		return articleNo;
 	}
-	public void setArticleNo(Integer articleNo) {
+	public void setArticleNo(int articleNo) {
 		this.articleNo = articleNo;
 	}
 	public String getTitle() {

@@ -45,6 +45,8 @@
 			article_no = #{articleNo}
 	</update>	
 	
+	<update id="view"></update>
+	
 	<delete id="delete">
 		DELETE FROM tbl_article
 		WHERE article_no = #{articleNo}

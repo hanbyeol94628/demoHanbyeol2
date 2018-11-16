@@ -49,7 +49,7 @@
 							<c:forEach items="${articles}" var="article">
 							<tr>
 								<td>${article.articleNo}</td>
-								<td><a href="${path}/article/read?articleNo=${article.articleNo}">${article.title}</td>
+								<td><a href="${path}/article/read?articleNo=${article.articleNo}">${article.title}</a></td>
 								<td>${article.writer}</td>
 								<td><fmt:formatDate value="${article.regDate}" pattern="yyyy-MM-dd a HH:mm" /></td>
 								<td><span class="badge bg-red">${article.viewCnt}</span></td>

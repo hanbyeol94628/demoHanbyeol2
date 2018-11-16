@@ -27,6 +27,6 @@
 		<property name="suffix" value=".jsp" />		
 	</bean>
 	
-	<context:component-scan base-package="com.doubles.mvcboard" />
+	<context:component-scan base-package="com.doubles.*" />
 	
 </beans>
