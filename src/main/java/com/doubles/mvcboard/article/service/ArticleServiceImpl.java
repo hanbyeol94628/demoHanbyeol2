@@ -41,14 +41,6 @@ public class ArticleServiceImpl implements ArticleService {
 
 	@Override
 	public List<ArticleVO> listAll() throws Exception {
-		
-		List<ArticleVO> k = articleDAO.listAll();
-	
-		
-		for(ArticleVO i : k) {
-			System.out.println(i);
-		}
-		
 		return articleDAO.listAll();
 	}
 

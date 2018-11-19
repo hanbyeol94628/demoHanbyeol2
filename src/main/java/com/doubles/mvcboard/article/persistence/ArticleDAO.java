@@ -3,6 +3,7 @@ package com.doubles.mvcboard.article.persistence;
 import java.util.List;
 
 import com.doubles.mvcboard.article.domain.ArticleVO;
+import com.doubles.mvcboard.commons.paging.Criteria;
 
 public interface ArticleDAO {
 
@@ -15,4 +16,8 @@ public interface ArticleDAO {
 	void delete(Integer articleNo) throws Exception;
 	
 	List<ArticleVO> listAll() throws Exception;
+	
+	List<ArticleVO> listPaging(int page) throws Exception;
+	
+	List<ArticleVO> listCriteria(Criteria criteria) throws Exception;
 }

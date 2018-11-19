@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.doubles.mvcboard.article.domain.ArticleVO;
+import com.doubles.mvcboard.commons.paging.Criteria;
 
 @Repository
 public class ArticleDAOImpl implements ArticleDAO {
@@ -44,6 +45,24 @@ public class ArticleDAOImpl implements ArticleDAO {
 	@Override
 	public List<ArticleVO> listAll() throws Exception {
 		return sqlSession.selectList(NAMESPACE + ".listAll");
+	}
+
+	@Override
+	public List<ArticleVO> listPaging(int page) throws Exception {
+
+		// 파라미터 page 값이 음수가 들어올 수 없게 
+		if(page <= 0) {
+			page = 1;
+		}
+
+		page = (page - 1) * 10;
+		
+		return sqlSession.selectList(NAMESPACE + ".listPaging", page);
+	}
+
+	@Override
+	public List<ArticleVO> listCriteria(Criteria criteria) throws Exception {
+		return sqlSession.selectList(NAMESPACE + ".listcriteria", criteria);
 	}
 
 }
