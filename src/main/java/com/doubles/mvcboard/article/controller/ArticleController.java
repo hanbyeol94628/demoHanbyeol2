@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.doubles.mvcboard.article.domain.ArticleVO;
 import com.doubles.mvcboard.article.service.ArticleService;
+import com.doubles.mvcboard.commons.paging.Criteria;
 
 @Controller
 @RequestMapping("/article")
@@ -51,11 +52,6 @@ public class ArticleController {
 		logger.info("list...");
 		model.addAttribute("articles", articleService.listAll());
 		
-		for(ArticleVO i:articleService.listAll()) {
-			System.out.println(i.getArticle_no());
-			System.out.println(i.getTitle());
-		}
-		
 		return "/article/list";
 	}
 	
@@ -92,6 +88,14 @@ public class ArticleController {
 		articleService.delete(article_no);
 		redirectAttributes.addFlashAttribute("msg", "delSuccess");
 		return "redirect:/article/list";
+	}
+	
+	// 페이징 처리
+	@RequestMapping(value="/listCriteria", method=RequestMethod.GET)
+	public String listCriteria(Model model, Criteria criteria) throws Exception{
+		logger.info("listCriteria...");
+		model.addAttribute("articles", articleService.listCriteria(criteria));
+		return "/article/list_criteria";
 	}
 	
 	

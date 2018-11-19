@@ -62,7 +62,7 @@ public class ArticleDAOImpl implements ArticleDAO {
 
 	@Override
 	public List<ArticleVO> listCriteria(Criteria criteria) throws Exception {
-		return sqlSession.selectList(NAMESPACE + ".listcriteria", criteria);
+		return sqlSession.selectList(NAMESPACE + ".listCriteria", criteria);
 	}
 
 }

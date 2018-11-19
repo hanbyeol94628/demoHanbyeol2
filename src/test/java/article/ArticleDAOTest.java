@@ -1,5 +1,4 @@
-package com.doubles.mvcboard.article;
-
+package article;
 import java.util.List;
 
 import javax.inject.Inject;

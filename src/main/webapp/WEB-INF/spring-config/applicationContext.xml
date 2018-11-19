@@ -2,16 +2,16 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
-	 http://www.springframework.org/schema/beans/spring-beans.xsd 
-	 http://www.springframework.org/schema/context 
-	 http://www.springframework.org/schema/context/spring-context.xsd">
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 	 
 	 
 	 <!-- DataSource log4jdbc-log4j2 설정 -->
-	 <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-	 	<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
-	 	<property name="url" value="jdbc:log4jdbc:mysql://127.0.0.1:3306/spring?useSSL=false" />
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"/>
+        <property name="url" value="jdbc:log4jdbc:mysql://127.0.0.1:3306/spring?useSSL=false"/>
 	 	<property name="username" value="hanbyeol" />
 	 	<property name="password" value="vanda" />
 	 </bean>
@@ -23,9 +23,9 @@
 	 	<property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml" />
 	 </bean>
 	 
-	 <bean id="sqlsSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
-	 	<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
-	 </bean>
+	 <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
+        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
+    </bean>
 	 
 	 <context:component-scan base-package="com.doubles.mvcboard"></context:component-scan>
 </beans>
