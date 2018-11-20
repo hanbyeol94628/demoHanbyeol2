@@ -100,7 +100,7 @@ public class ArticleController {
 	}
 	
 	// 페이징
-	@RequestMapping(value="/listPaging", method = RequestMethod.GET)
+	@RequestMapping(value="/listPaging", method=RequestMethod.GET)
 	public String listPaging(Model model, Criteria criteria) throws Exception{
 		logger.info("listPaging...");
 		
