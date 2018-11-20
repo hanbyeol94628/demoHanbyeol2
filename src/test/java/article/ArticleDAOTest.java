@@ -9,6 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import com.doubles.mvcboard.article.domain.ArticleVO;
 import com.doubles.mvcboard.article.persistence.ArticleDAO;
@@ -22,6 +24,34 @@ public class ArticleDAOTest {
 	
 	@Inject
 	private ArticleDAO articleDAO;
+	
+	
+	@Test
+	public void TestURI() throws Exception{
+		UriComponents uriComponents = UriComponentsBuilder.newInstance()
+				.path("/article/read")
+				.queryParam("article_no", 12)
+				.queryParam("perPageNum", 20)
+				.build();
+		logger.info("/article/read?article_no=12&perPageNum=20");
+		logger.info(uriComponents.toString());
+	}
+	
+
+	@Test
+	public void TestURI2() throws Exception{
+		UriComponents uriComponents = UriComponentsBuilder.newInstance()
+				.path("/{module}/{page}")
+				.queryParam("article_no", 12)
+				.queryParam("perPageNum", 20)
+				.build()
+				.expand("article", "read")
+				.encode();
+		
+		logger.info("/article/read?article_no=12&perPageNum=20");
+		logger.info(uriComponents.toString());
+	}
+	
 	
 	@Test
 	public void testCreate() throws Exception {

@@ -1,5 +1,8 @@
 package com.doubles.mvcboard.commons.paging;
 
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
+
 public class PageMaker {
 
 	private int totalCount;		// 전체 게시글 개수
@@ -83,6 +86,14 @@ public class PageMaker {
 		prev = startPage == 1 ? false : true;
 		next = endPage * criteria.getPerPageNum() >= totalCount ? false : true;
 		
+	}
+	
+	public String makeQuery(int page) {
+		UriComponents uriComponents = UriComponentsBuilder.newInstance()
+				.queryParam("page", page)
+				.queryParam("perPageNum", criteria.getPerPageNum())
+				.build();
+		return uriComponents.toUriString();
 	}
 
 	

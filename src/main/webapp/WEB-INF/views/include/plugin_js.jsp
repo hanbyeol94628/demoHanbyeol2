@@ -58,6 +58,16 @@
 			history.go(-1);
 		});
 		
+		$(".pagination li a").on("click", function (event){
+			event.preventDefault();
+			var targetPage = $(this).attr("href");
+			var listPageForm = $("#listPageForm");
+			listPageForm.find("[name='page']").val(targetPage);
+			listPageForm.attr("action", "/article/listPaging").attr("method", "get");
+			listPageForm.submit();
+		})
+		
+		
 		
 	});
 </script>
