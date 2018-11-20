@@ -106,7 +106,7 @@ public class ArticleController {
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCriteria(criteria);
-		pageMaker.setTotalCount(1000);
+		pageMaker.setTotalCount(articleService.countArticles(criteria));
 
 		model.addAttribute("articles", articleService.listCriteria(criteria));
 		model.addAttribute("pageMaker", pageMaker);

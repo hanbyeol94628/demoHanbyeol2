@@ -65,7 +65,7 @@
 								<li><a href="${path}/article/listPaging?page=${pageMaker.startPage - 1}">이전</a></li>
 							</c:if>
 							<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-								<li <c:out value="{pageMaker.criteria.page == idx ? 'class=active' : ''}" />>
+								<li <c:out value="${pageMaker.criteria.page == idx? 'class=active':''}"/>>
 									<a href="${path}/article/listPaging?page=${idx}">${idx}</a>
 								</li>
 							</c:forEach>
@@ -74,8 +74,6 @@
 							</c:if>
 						</ul>
 					</div>
-				</div>
-				<div class="box-footer">
 					<div class="pull-right">
 						<button type="button" class="btn btn-success btn-flat" id="writeBtn">
 							<i class="fa fa-pencil"></i>글쓰기

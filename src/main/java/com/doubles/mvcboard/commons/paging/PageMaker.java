@@ -15,6 +15,18 @@ public class PageMaker {
 		this.criteria = criteria;
 	}
 	
+	public int getDisplayPageNum() {
+		return displayPageNum;
+	}
+
+	public void setDisplayPageNum(int displayPageNum) {
+		this.displayPageNum = displayPageNum;
+	}
+
+	public Criteria getCriteria() {
+		return criteria;
+	}
+
 	public void setTotalCount(int totalCount) {
 		this.totalCount = totalCount;
 		calcData();
