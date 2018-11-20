@@ -51,7 +51,7 @@
 								<td>${article.article_no}</td>
 								<%--<td><a href="${path}/article/read?article_no=${article.article_no}">${article.title}</a></td>--%>
 								<td>
-									<a href="${path}/article/read${pageMaker.makeQuery(pageMaker.criteria.page)}&article_no=${article.article_no}">
+									<a href="${path}/article/readPaging${pageMaker.makeQuery(pageMaker.criteria.page)}&article_no=${article.article_no}">
 										${article.title}
 									</a>
 								</td>
