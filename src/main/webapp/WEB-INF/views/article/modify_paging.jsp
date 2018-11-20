@@ -3,6 +3,26 @@
 
 <%@ include file="../include/head.jsp" %>
 
+<!--
+BODY TAG OPTIONS:
+=================
+Apply one or more of the following classes to get the
+desired effect
+|---------------------------------------------------------|
+| SKINS         | skin-blue                               |
+|               | skin-black                              |
+|               | skin-purple                             |
+|               | skin-yellow                             |
+|               | skin-red                                |
+|               | skin-green                              |
+|---------------------------------------------------------|
+|LAYOUT OPTIONS | fixed                                   |
+|               | layout-boxed                            |
+|               | layout-top-nav                          |
+|               | sidebar-collapse                        |
+|               | sidebar-mini                            |
+|---------------------------------------------------------|
+-->
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
@@ -31,62 +51,45 @@
     </section>
     <section class="content container-fluid">
     
-    	<div class="col-lg-12">
-   			<div class="box box-primay">
+    <div class="col-lg-12">
+		<form role="form" id="writeForm" method="post" action="${path}/article/modify">
+			<div class="box box-primary">
 				<div class="box-header with-border">
-					<h3 class="box-title">게시글 목록</h3>
+					<h3 class="box-title">게시글 작성</h3>
 				</div>
 				<div class="box-body">
-					<table class="table table-bordered">
-						<tbody>
-							<tr>
-								<th style="width:30px;">#</th>
-								<th>제목</th>
-								<th style="width:100px;">작성자</th>
-								<th style="width:150px;">작성시간</th>
-								<th style="width:60px;">조회</th>
-							</tr>
-							<c:forEach items="${articles}" var="article">
-							<tr>
-								<td>${article.article_no}</td>
-								<%--<td><a href="${path}/article/read?article_no=${article.article_no}">${article.title}</a></td>--%>
-								<td>
-									<a href="${path}/article/read${pageMaker.makeQuery(pageMaker.criteria.page)}&article_no=${article.article_no}">
-										${article.title}
-									</a>
-								</td>
-								<td>${article.writer}</td>
-								<td><fmt:formatDate value="${article.regDate}" pattern="yyyy-MM-dd a HH:mm" /></td>
-								<td><span class="badge bg-red">${article.viewCnt}</span></td>
-							</tr>
-							</c:forEach>
-						</tbody>
-					</table>
+					<input type="hidden" name="article_no" value="${article.article_no}">
+					<input type="hidden" name="page" value="${criteria.page}">
+					<input type="hidden" name="perPageNum" value="${critera.perPageNum}">
+					
+					<div class="form-group">
+						<label for="title">제목</label>
+						<input class="form-control" id="title" name="title" placeholder="제목을 입력하세요" value="${article.title}">
+					</div>
+					
+					<div class="form-group">
+						<label for="content">내용</label>
+						<textarea class="form-control" id="content" name="content" rows="30" 
+							placeholder="내용을 입력하세요" style="resize: none;">${article.content}</textarea>
+					</div>
+					
+					<div class="form-group">
+						<label for="writer">작성자</label>
+						<input class="form-control" id="writer" name="writer" value="${article.writer}" readonly>
+					</div>
 				</div>
 				<div class="box-footer">
-					<div class="text-center">
-						<ul class="pagination">
-							<c:if test="${pageMaker.prev}">
-								<li><a href="${pageMaker.startPage - 1}">이전</a></li>
-							</c:if>
-							<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-								<li <c:out value="${pageMaker.criteria.page == idx? 'class=active':''}"/>>
-									<a href="${idx}">${idx}</a>
-								</li>
-							</c:forEach>
-							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-								<li><a href="${pageMaker.endPage + 1}">다음</a></li>
-							</c:if>
-						</ul>
-					</div>
+					<button type="button" class="btn btn-primary goListBtn"><i class="fa fa-list"></i>목록</button>
 					<div class="pull-right">
-						<button type="button" class="btn btn-success btn-flat" id="writeBtn">
-							<i class="fa fa-pencil"></i>글쓰기
-						</button>
+						<button type="reset" class="btn btn-warning cancelBtn"><i class="fa fa-reply"></i>취소</button>
+						<button type="submit" class="btn btn-success modifyBtn"><i class="fa fa-save"></i> 수정 저장</button>
 					</div>
-				</div>
-   			</div>
-		</div>
+				</div>			
+			</div>		
+		</form>    
+    </div>
+    
+    
 	</div>
 	<!-- /.content-wrapper -->
 
@@ -95,11 +98,6 @@
 	<!-- Main Footer -->
 	<%@ include file="../include/main_footer.jsp" %>
 
-	
-	<form id="listPageForm">
-		<input type="hidden" name="page" value="${pageMaker.criteria.page}">
-		<input type="hidden" name="perPageNum" value="${pageMaker.criteria.perPageNum}">
-	</form>
 
 
 	<!-- Control Sidebar -->

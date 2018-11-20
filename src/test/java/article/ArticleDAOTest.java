@@ -24,7 +24,18 @@ public class ArticleDAOTest {
 	
 	@Inject
 	private ArticleDAO articleDAO;
-	
+
+	@Test
+	public void testCreate() throws Exception {
+		for(int i=1; i<=300; i++) {
+			ArticleVO articleVO = new ArticleVO();
+			articleVO.setTitle(i+"번째 글 ");
+			articleVO.setContent(i+"번째 글 내용이지롱롱");
+			articleVO.setWriter("user0"+(i%10));
+			
+			articleDAO.create(articleVO);
+		}
+	}
 	
 	@Test
 	public void TestURI() throws Exception{
@@ -53,17 +64,6 @@ public class ArticleDAOTest {
 	}
 	
 	
-	@Test
-	public void testCreate() throws Exception {
-		for(int i=1; i<=1000; i++) {
-			ArticleVO articleVO = new ArticleVO();
-			articleVO.setTitle(i+"번째 글 제목입니다.");
-			articleVO.setContent(i+"번째 글 내용이지롱롱");
-			articleVO.setWriter("user0"+(i%10));
-			
-			articleDAO.create(articleVO);
-		}
-	}
 	
 	@Test
 	public void testListCriteria() throws Exception{

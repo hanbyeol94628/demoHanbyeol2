@@ -59,6 +59,9 @@ desired effect
 				</div>
 				<div class="box-body">
 					<input type="hidden" name="article_no" value="${article.article_no}">
+					<input type="hidden" name="page" value="${criteria.page}">
+					<input type="hidden" name="perPageNum" value="${critera.perPageNum}">
+					
 					<div class="form-group">
 						<label for="title">제목</label>
 						<input class="form-control" id="title" name="title" placeholder="제목을 입력하세요" value="${article.title}">

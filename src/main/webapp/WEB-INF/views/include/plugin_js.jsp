@@ -35,18 +35,20 @@
 		
 		
 		$(".modBtn").on("click", function(){
-			formObj.attr("action", "/article/modify");
+			formObj.attr("action", "/article/modifyPaging");
 			formObj.attr("method", "get");
 			formObj.submit();
 		});
 		
 		$(".delBtn").on("click", function(){
-			formObj.attr("action", "/article/remove");
+			formObj.attr("action", "/article/removePaging");
 			formObj.submit();
 		});
 		
 		$(".listBtn").on("click", function(){
-			self.location="/article/list"
+			formObj.attr("method", "get");
+			formObj.attr("action", "/article/listPaging");
+			formObj.submit();
 		});
 		
 		
@@ -58,10 +60,16 @@
 			history.go(-1);
 		});
 		
+		$(".goListBtn").on("click", function(){
+			self.location="/article/listPaging?page=${criteria.page}&perPageNum=${criteria.perPageNum}";
+		});
+		
 		$(".pagination li a").on("click", function (event){
 			event.preventDefault();
+			
 			var targetPage = $(this).attr("href");
 			var listPageForm = $("#listPageForm");
+			
 			listPageForm.find("[name='page']").val(targetPage);
 			listPageForm.attr("action", "/article/listPaging").attr("method", "get");
 			listPageForm.submit();

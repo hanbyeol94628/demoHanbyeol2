@@ -70,6 +70,7 @@ desired effect
 				<div class="box-footer">
 					<form role="form" method="post">
 						<input type="hidden" name="article_no" value="${article.article_no}">
+					
 					</form>
 					<button type="submit" class="btn btn-primary listBtn"><i class="fa fa-list"></i>목록</button>
 					<div class="pull-right">
