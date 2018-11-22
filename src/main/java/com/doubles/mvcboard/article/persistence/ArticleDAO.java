@@ -23,5 +23,9 @@ public interface ArticleDAO {
 	List<ArticleVO> listCriteria(Criteria criteria) throws Exception;
 
 	int countArticles(Criteria criteria) throws Exception;
-	int countArticles(SearchCriteria SearchCriteria) throws Exception;
+
+	List<ArticleVO> listSearch(SearchCriteria searchCriteria) throws Exception;
+	
+	int countSearchedArticles(SearchCriteria searchCriteria) throws Exception;
+
 }

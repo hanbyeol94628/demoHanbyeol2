@@ -57,9 +57,15 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
-	public int countArticles(SearchCriteria searchCriteria) throws Exception {
-		return articleDAO.countArticles(searchCriteria);
+	public List<ArticleVO> listSearch(SearchCriteria searchCriteria) throws Exception {
+		return articleDAO.listSearch(searchCriteria);
 	}
+
+	@Override
+	public int countSearchedArticles(SearchCriteria searchCriteria) throws Exception {
+		return articleDAO.countSearchedArticles(searchCriteria);
+	}
+
 
 
 }

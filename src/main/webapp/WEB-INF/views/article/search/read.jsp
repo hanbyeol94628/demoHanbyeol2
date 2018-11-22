@@ -70,8 +70,11 @@ desired effect
 				<div class="box-footer">
 					<form role="form" method="post">
 						<input type="hidden" name="article_no" value="${article.article_no}">
-						<input type="hidden" name="page" value="${criteria.page}">
-						<input type="hidden" name="perPageNum" value="${criteria.perPageNum}">
+						<input type="hidden" name="page" value="${searchCriteria.page}">
+						<input type="hidden" name="perPageNum" value="${searchCriteria.perPageNum}">
+						<input type="hidden" name="searchType" value="${searchCriteria.searchType}">
+						<input type="hidden" name="keyword" value="${searchCriteria.keyword}">
+					
 					</form>
 					<button type="submit" class="btn btn-primary listBtn"><i class="fa fa-list"></i>목록</button>
 					<div class="pull-right">
@@ -170,7 +173,7 @@ desired effect
 </div>
 
 <!-- ./wrapper -->
-<%@ include file="../include/plugin_js_paging.jsp" %>
+<%@ include file="../include/plugin_js_search.jsp" %>
 
 </body>
 </html>
