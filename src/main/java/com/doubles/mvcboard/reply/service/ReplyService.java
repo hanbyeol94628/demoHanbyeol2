@@ -2,6 +2,7 @@ package com.doubles.mvcboard.reply.service;
 
 import java.util.List;
 
+import com.doubles.mvcboard.commons.paging.Criteria;
 import com.doubles.mvcboard.reply.domain.ReplyVO;
 
 public interface ReplyService {
@@ -13,4 +14,9 @@ public interface ReplyService {
 	void update (ReplyVO replyVO) throws Exception;
 	
 	void delete (int reply_no) throws Exception;
+	
+	List<ReplyVO> getRepliesPaging(int article_no, Criteria criteria) throws Exception;
+	
+	int countReplies(int article_no) throws Exception;
+	
 }

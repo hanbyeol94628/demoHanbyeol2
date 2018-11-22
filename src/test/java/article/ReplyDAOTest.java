@@ -1,5 +1,7 @@
 package article;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.junit.Test;
@@ -9,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.doubles.mvcboard.commons.paging.Criteria;
 import com.doubles.mvcboard.reply.domain.ReplyVO;
 import com.doubles.mvcboard.reply.persistence.ReplyDAO;
 
@@ -26,7 +29,7 @@ public class ReplyDAOTest {
 		
 		for (int i = 1; i <= 100; i++) {
 			ReplyVO replyVO = new ReplyVO();
-			replyVO.setArticle_no(200);
+			replyVO.setArticle_no(300);
 			replyVO.setReplyText(i+"번째 댓글이지롱");
 			replyVO.setReplyWriter("user0"+(i&10));
 			replyDAO.create(replyVO);
@@ -49,6 +52,21 @@ public class ReplyDAOTest {
 	@Test
 	public void testReplyDelete() throws Exception{
 		replyDAO.delete(3);
+	}
+	
+	
+	@Test
+	public void testReplyPaging() throws Exception{
+		
+		Criteria criteria = new Criteria();
+		criteria.setPerPageNum(20);
+		criteria.setPage(1);
+		
+		List<ReplyVO> replies = replyDAO.listPaging(1000, criteria);
+		
+		for(ReplyVO reply : replies) {
+			logger.info(reply.getReply_no() + " : " + reply.getReplyText());
+		}
 	}
 
 }

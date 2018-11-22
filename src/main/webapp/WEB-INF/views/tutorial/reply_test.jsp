@@ -3,26 +3,6 @@
 
 <%@ include file="../include/head.jsp" %>
 
-<!--
-BODY TAG OPTIONS:
-=================
-Apply one or more of the following classes to get the
-desired effect
-|---------------------------------------------------------|
-| SKINS         | skin-blue                               |
-|               | skin-black                              |
-|               | skin-purple                             |
-|               | skin-yellow                             |
-|               | skin-red                                |
-|               | skin-green                              |
-|---------------------------------------------------------|
-|LAYOUT OPTIONS | fixed                                   |
-|               | layout-boxed                            |
-|               | layout-top-nav                          |
-|               | sidebar-collapse                        |
-|               | sidebar-mini                            |
-|---------------------------------------------------------|
--->
 <body class="hold-transition skin-blue sidebar-mini layout-boxed">
 <div class="wrapper">
 
@@ -51,47 +31,48 @@ desired effect
     </section>
     <section class="content container-fluid">
     
-    <div class="col-lg-12">
-		<form role="form" id="writeForm" method="post" action="${path}/article/search/modify">
-			<div class="box box-primary">
+    	<div class="col-lg-12">
+   			<div class="box box-primay">
 				<div class="box-header with-border">
-					<h3 class="box-title">게시글 작성</h3>
+					<h3 class="box-title">댓글 작성</h3>
 				</div>
 				<div class="box-body">
-						<input type="hidden" name="article_no" value="${article.article_no}">
-						<input type="hidden" name="page" value="${searchCriteria.page}">
-						<input type="hidden" name="perPageNum" value="${searchCriteria.perPageNum}">
-						<input type="hidden" name="searchType" value="${searchCriteria.searchType}">
-						<input type="hidden" name="keyword" value="${searchCriteria.keyword}">
-					
 					<div class="form-group">
-						<label for="title">제목</label>
-						<input class="form-control" id="title" name="title" placeholder="제목을 입력하세요" value="${article.title}">
+						<label for="newReplyText">댓글 내용</label>
+						<input class="form-control" id="newReplyText" name="replyText" placeholder="댓글 내용을 입력하세요">
 					</div>
 					
 					<div class="form-group">
-						<label for="content">내용</label>
-						<textarea class="form-control" id="content" name="content" rows="30" 
-							placeholder="내용을 입력하세요" style="resize: none;">${article.content}</textarea>
-					</div>
-					
-					<div class="form-group">
-						<label for="writer">작성자</label>
-						<input class="form-control" id="writer" name="writer" value="${article.writer}" readonly>
+						<label for="newReplyText">댓글 작성자</label>
+						<input class="form-control" id="newReplyWriter" name="replyWriter" placeholder="댓글 작성자를 입력하세요">
 					</div>
 				</div>
 				<div class="box-footer">
-					<button type="button" class="btn btn-primary goListBtn"><i class="fa fa-list"></i>목록</button>
-					<div class="pull-right">
-						<button type="reset" class="btn btn-warning cancelBtn"><i class="fa fa-reply"></i>취소</button>
-						<button type="submit" class="btn btn-success modifyBtn"><i class="fa fa-save"></i> 수정 저장</button>
+					<ul id="replies">
+					</ul>	
+				</div>
+				<div class="box-footer">
+					<div class="text-center">
+						<ul class="pagination pagination-sm no-margin">
+						
+						</ul>
 					</div>
-				</div>			
-			</div>		
-		</form>    
-    </div>
-    
-    
+				</div>
+   			</div>
+		</div>
+		
+		<div class="modal fade" id="modifyModal" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-header">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">댓글 수정창</h4>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
 	</div>
 	<!-- /.content-wrapper -->
 
@@ -100,6 +81,11 @@ desired effect
 	<!-- Main Footer -->
 	<%@ include file="../include/main_footer.jsp" %>
 
+	
+	<form id="listPageForm">
+		<input type="hidden" name="page" value="${pageMaker.criteria.page}">
+		<input type="hidden" name="perPageNum" value="${pageMaker.criteria.perPageNum}">
+	</form>
 
 
 	<!-- Control Sidebar -->

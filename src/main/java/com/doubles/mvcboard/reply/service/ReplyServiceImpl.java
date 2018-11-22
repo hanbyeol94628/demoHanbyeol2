@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.doubles.mvcboard.commons.paging.Criteria;
 import com.doubles.mvcboard.reply.domain.ReplyVO;
 import com.doubles.mvcboard.reply.persistence.ReplyDAO;
 
@@ -37,6 +38,16 @@ public class ReplyServiceImpl implements ReplyService{
 	@Override
 	public void delete(int reply_no) throws Exception {
 		replyDAO.delete(reply_no);
+	}
+
+	@Override
+	public List<ReplyVO> getRepliesPaging(int article_no, Criteria criteria) throws Exception {
+		return replyDAO.listPaging(article_no, criteria);
+	}
+
+	@Override
+	public int countReplies(int article_no) throws Exception {
+		return replyDAO.countReply(article_no);
 	}
 	
 	
