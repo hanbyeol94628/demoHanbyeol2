@@ -52,7 +52,7 @@ desired effect
     <section class="content container-fluid">
     
     <div class="col-lg-12">
-		<form role="form" id="writeForm" method="post" action="${path}/article/modify">
+		<form role="form" id="writeForm" method="post" action="${path}/article/modifyPaging">
 			<div class="box box-primary">
 				<div class="box-header with-border">
 					<h3 class="box-title">게시글 작성</h3>
@@ -60,7 +60,7 @@ desired effect
 				<div class="box-body">
 					<input type="hidden" name="article_no" value="${article.article_no}">
 					<input type="hidden" name="page" value="${criteria.page}">
-					<input type="hidden" name="perPageNum" value="${critera.perPageNum}">
+					<input type="hidden" name="perPageNum" value="${criteria.perPageNum}">
 					
 					<div class="form-group">
 						<label for="title">제목</label>

@@ -71,7 +71,7 @@ desired effect
 					<form role="form" method="post">
 						<input type="hidden" name="article_no" value="${article.article_no}">
 						<input type="hidden" name="page" value="${criteria.page}">
-						<input type="hidden" name="perPageNum" value="${critera.perPageNum}">
+						<input type="hidden" name="perPageNum" value="${criteria.perPageNum}">
 					</form>
 					<button type="submit" class="btn btn-primary listBtn"><i class="fa fa-list"></i>목록</button>
 					<div class="pull-right">
