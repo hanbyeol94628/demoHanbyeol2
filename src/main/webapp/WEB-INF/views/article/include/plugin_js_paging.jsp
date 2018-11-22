@@ -75,7 +75,12 @@
 			listPageForm.submit();
 		})
 		
-		
+		$("#searchBtn").on("click", function (event){
+			self.location =
+				"/article/search/list${pageMaker.makeQuery(1)}"
+				+ "&searchType=" + $("select option:selected").val()
+				+ "&keyword=" + encodeURIComponent($("#keywordInput").val());
+		});
 		
 	});
 </script>
