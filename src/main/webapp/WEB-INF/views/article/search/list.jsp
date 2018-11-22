@@ -203,7 +203,7 @@
 </div>
 
 <!-- ./wrapper -->
-<%@ include file="../include/plugin_js_paging.jsp" %>
+<%@ include file="../include/plugin_js_search.jsp" %>
 
 </body>
 </html>

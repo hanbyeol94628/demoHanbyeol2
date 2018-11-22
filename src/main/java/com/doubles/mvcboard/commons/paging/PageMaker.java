@@ -113,8 +113,12 @@ public class PageMaker {
 				.queryParam("searchType", ((SearchCriteria) criteria).getSearchType())
 				.queryParam("keyword", encoding(((SearchCriteria) criteria).getKeyword()))
 				.build();
+		
+		System.out.println(uriComponents.toUriString());
 		return uriComponents.toUriString();
 	}
+	
+
 	
 	private String encoding(String keyword) {
 		if(keyword == null || keyword.trim().length() == 0) {

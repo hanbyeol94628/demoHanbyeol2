@@ -67,16 +67,6 @@
 					+ "&keyword=${searchCriteria.keyword}";
 		});
 		
-		$(".pagination li a").on("click", function (event){
-			event.preventDefault();
-			
-			var targetPage = $(this).attr("href");
-			var listPageForm = $("#listPageForm");
-			
-			listPageForm.find("[name='page']").val(targetPage);
-			listPageForm.attr("action", "/article/paging/list").attr("method", "get");
-			listPageForm.submit();
-		})
 		
 		$("#searchBtn").on("click", function (event){
 			self.location =
