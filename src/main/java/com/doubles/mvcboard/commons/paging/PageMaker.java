@@ -16,7 +16,12 @@ public class PageMaker {
 	
 	private int displayPageNum = 10;	// 페이지 번호 개수
 	private Criteria criteria;
+	private SearchCriteria searchCriteria;
 	
+	public SearchCriteria getSearchCriteria() {
+		return searchCriteria;
+	}
+
 	public void setCriteria(Criteria criteria) {
 		this.criteria = criteria;
 	}
@@ -120,6 +125,11 @@ public class PageMaker {
 		}catch(UnsupportedEncodingException e) {
 			return "";
 		}
+	}
+
+	public void setSearchCriteria(SearchCriteria searchCriteria) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

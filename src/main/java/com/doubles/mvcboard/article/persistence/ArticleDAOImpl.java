@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.doubles.mvcboard.article.domain.ArticleVO;
 import com.doubles.mvcboard.commons.paging.Criteria;
+import com.doubles.mvcboard.commons.paging.SearchCriteria;
 
 @Repository
 public class ArticleDAOImpl implements ArticleDAO {
@@ -68,6 +69,11 @@ public class ArticleDAOImpl implements ArticleDAO {
 	@Override
 	public int countArticles(Criteria criteria) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + ".countArticles", criteria);
+	}
+
+	@Override
+	public int countArticles(SearchCriteria SearchCriteria) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".countArticles", SearchCriteria);
 	}
 
 }

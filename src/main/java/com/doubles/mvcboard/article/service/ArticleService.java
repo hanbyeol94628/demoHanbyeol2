@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.doubles.mvcboard.article.domain.ArticleVO;
 import com.doubles.mvcboard.commons.paging.Criteria;
+import com.doubles.mvcboard.commons.paging.SearchCriteria;
 
 public interface ArticleService {
 	void create(ArticleVO articleVO) throws Exception;
@@ -19,4 +20,6 @@ public interface ArticleService {
 	List<ArticleVO> listCriteria(Criteria criteria) throws Exception;
 	
 	int countArticles(Criteria criteria) throws Exception;
+	int countArticles(SearchCriteria searchCriteria) throws Exception;
+	
 }

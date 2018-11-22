@@ -49,7 +49,6 @@
 							<c:forEach items="${articles}" var="article">
 							<tr>
 								<td>${article.article_no}</td>
-								<%--<td><a href="${path}/article/read?article_no=${article.article_no}">${article.title}</a></td>--%>
 								<td>
 									<a href="${path}/article/search/read${pageMaker.makeSearch(pageMaker.criteria.page)}&article_no=${article.article_no}">
 										${article.title}
@@ -93,7 +92,7 @@
 					</div>
 					<div class="form-group col-sm-10">
 						<div class="input-group">
-							<input type="text" class="form-control" name="keyword" id="keywordInput" value="${searchCriteria.keyword}" placehodler="검색어">
+							<input type="text" class="form-control" name="keyword" id="keywordInput" value="${searchCriteria.keyword}" placeholder="검색어">
 							<span class="input-group-btn">
 								<button type="button" class="btn btn-primary btn-flat" id="searchBtn">
 									<i class="fa fa-search"></i> 검색
