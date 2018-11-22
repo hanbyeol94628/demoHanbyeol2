@@ -23,7 +23,7 @@ desired effect
 |               | sidebar-mini                            |
 |---------------------------------------------------------|
 -->
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini layout-boxed">
 <div class="wrapper">
 
 
@@ -50,41 +50,35 @@ desired effect
       </ol>
     </section>
     <section class="content container-fluid">
-    
-    <div class="col-lg-12">
-		<form role="form" id="writeForm" method="post" action="${path}/article/write">
-			<div class="box box-primary">
-				<div class="box-header with-border">
-					<h3 class="box-title">게시글 작성</h3>
+    	<div class="col-lg-12">
+    		<div class="box box-primary">
+    			<div class="box-header with-border">
+					<h3 class="box-title">글 제목 : ${article.title}</h3>
 				</div>
-				<div class="box-body">
-					<div class="form-group">
-						<label for="title">제목</label>
-						<input class="form-control" id="title" name="title" placeholder="제목을 입력하세요">
-					</div>
-					
-					<div class="form-group">
-						<label for="content">내용</label>
-						<textarea class="form-control" id="content" name="content" rows="30" 
-							placeholder="내용을 입력하세요" style="resize: none;"></textarea>
-					</div>
-					
-					<div class="form-group">
-						<label for="writer">작성자</label>
-						<input class="form-control" id="writer" name="writer">
+				<div class="box-body" style="height: 700px">
+					${article.content}
+				</div>
+				<div class="box-footer">
+					<div class="user-block">
+						<img class="img-sircle img-bordered-sm" src="/dist/img/user1-128x128.jpg" alt="user image">
+						<span class="username">
+							<a href="#">${article.writer}</a>
+						</span>
+						<span class="description"><fmt:formatDate pattern="yyyy-MM-dd a HH:mm" value="${article.regDate}" /></span>
 					</div>
 				</div>
 				<div class="box-footer">
-					<button type="button" class="btn btn-primary"><i class="fa fa-list"></i>목록</button>
+					<form role="form" method="post">
+						<input type="hidden" name="article_no" value="${article.article_no}">
+					</form>
+					<button type="submit" class="btn btn-primary listBtn"><i class="fa fa-list"></i>목록</button>
 					<div class="pull-right">
-						<button type="reset" class="btn btn-warning"><i class="fa fa-reply"></i>초기화</button>
-						<button type="submit" class="btn btn-success"><i class="fa fa-save"></i>저장</button>
+						<button type="submit" class="btn btn-warning modBtn"><i class="fa fa-edit"></i>수정</button>
+						<button type="submit" class="btn btn-danger delBtn"><i class="fa fa-trash"></i>삭제</button>
 					</div>
-				</div>			
-			</div>		
-		</form>    
-    </div>
-    
+				</div>
+    		</div>
+    	</div>
 	</div>
 	<!-- /.content-wrapper -->
 
@@ -174,7 +168,7 @@ desired effect
 </div>
 
 <!-- ./wrapper -->
-<%@ include file="../include/plugin_js.jsp" %>
+<%@ include file="../include/plugin_js_normal.jsp" %>
 
 </body>
 </html>

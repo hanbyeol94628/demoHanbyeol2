@@ -1,4 +1,7 @@
 eclipse.preferences.version=1
+encoding//src/main/webapp/WEB-INF/views/article/include/left_column.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/article/include/plugin_js_normal.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/article/include/plugin_js_paging.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/include/head.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/include/left_column.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/include/main_footer.jsp=UTF-8
