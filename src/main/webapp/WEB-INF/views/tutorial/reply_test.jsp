@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 
 <%@ include file="../include/head.jsp" %>
@@ -47,10 +47,13 @@
 						<input class="form-control" id="newReplyWriter" name="replyWriter" placeholder="댓글 작성자를 입력하세요">
 					</div>
 				</div>
+				
 				<div class="box-footer">
 					<ul id="replies">
 					</ul>	
 				</div>
+				
+				
 				<div class="box-footer">
 					<div class="text-center">
 						<ul class="pagination pagination-sm no-margin">
@@ -58,22 +61,45 @@
 						</ul>
 					</div>
 				</div>
+				
+				
    			</div>
 		</div>
 		
 		<div class="modal fade" id="modifyModal" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-header">
+				
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
 						<h4 class="modal-title">댓글 수정창</h4>
 					</div>
+					
+					<div class="modal-body">
+						<div class="form-group">
+							<label for="reply_no">댓글 번호</label>
+							<input class="form-control" id="reply_no" name="reply_no" readonly>
+						</div>
+						<div class="form-group">
+							<label for="replyText">댓글 내용</label>
+							<input class="form-control" id="replyText" name="replyText" placeholder="댓글 내용을 입력하세요">
+						</div>
+						<div class="form-group">
+							<label for="replyWriter">댓글 작성자</label>
+							<input class="form-control" id="replyWriter" name="replyWriter" readonly>
+						</div>
+					</div>
+					
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default pull-left" data-dismiss="modal">닫기</button>
+						<button type="button" class="btn btn-success modalModBtn">수정</button>
+						<button type="button" class="btn btn-danger modalDelBtn">삭제</button>
+					</div>
+					
 				</div>
 			</div>
 		</div>
-		
-		
-	</div>
+	</section>
 	<!-- /.content-wrapper -->
 
 
@@ -167,7 +193,7 @@
 </div>
 
 <!-- ./wrapper -->
-<%@ include file="../include/plugin_js_search.jsp" %>
+<%@ include file="../include/plugin_js_reply.jsp" %>
 
 </body>
 </html>

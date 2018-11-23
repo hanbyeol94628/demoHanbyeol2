@@ -70,6 +70,17 @@
           </ul>
         </li>
         
+        <li class="treeview">
+        	 <a href="#"><i class="fa fa-fa-edit"></i> <span>AJAX 댓글 테스트</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="${path}/reply/test"><i class="fa fa-pencil"></i>댓글 테스트 페이지</a></li>
+          </ul>
+        </li>
+        
         
         
       </ul>
