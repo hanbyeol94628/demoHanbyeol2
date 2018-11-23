@@ -2,6 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -20,6 +21,7 @@
 	<mvc:resources mapping="/plugins/**" location="/resources/plugins/"/>
 	<mvc:resources mapping="/dist/**" location="/resources/dist/"/>
 	
+	<aop:aspectj-autoproxy/>
 	
 	<!-- viewResolver 설정 -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

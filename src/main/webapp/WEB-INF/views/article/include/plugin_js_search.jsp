@@ -79,7 +79,7 @@
 		
 		
 		
-		var article_no = "#{article.article_no}"; // 현재 게시판 번호
+		var article_no = "${article.article_no}"; // 현재 게시판 번호
 		var replyPageNum = 1; // 댓글 페이지 번호 초기화
 		
 		// 댓글 내용 : 줄바꿈 / 공백처리
@@ -111,7 +111,7 @@
 		
 		// 댓글 목록 함수
 		function getReplies(repliesUri){
-			$.getJSON(replieUri, function (data){
+			$.getJSON(repliesUri, function (data){
 				printReplyCount(data.pageMaker.totalCount);
 				printReplies(data.replies, $(".repliesDiv"), $("#replyTemplate"));
 				printReplyPaging(data.pageMaker, $(".pagination"));
@@ -171,7 +171,6 @@
 			getReplies("/replies/"+article_no + "/" + replyPageNum);
 		});
 		
-	}
 		
 	
 	// 댓글 저장 버튼 클릭 이벤트
@@ -222,7 +221,7 @@
 		var replyText = $("#replyText").val();
 		$.ajax({
 			type : "put",
-			uri : "/replies/" + reply_no,
+			url : "/replies/" + reply_no,
 			headers : {
 				"Content-Type" : "application/json",
 				"X-HTTP-Method-Override" : "PUT"
