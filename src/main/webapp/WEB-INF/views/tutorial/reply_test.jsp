@@ -46,6 +46,12 @@
 						<label for="newReplyText">댓글 작성자</label>
 						<input class="form-control" id="newReplyWriter" name="replyWriter" placeholder="댓글 작성자를 입력하세요">
 					</div>
+					
+					
+					<div>
+						<button type="button" id="replyAddBtn" class="btn btn-primary pull-right"><i class="fa fa-pencil"></i>댓글 저장</button>
+					</div>
+					
 				</div>
 				
 				<div class="box-footer">
@@ -68,8 +74,7 @@
 		
 		<div class="modal fade" id="modifyModal" role="dialog">
 			<div class="modal-dialog">
-				<div class="modal-header">
-				
+				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
 						<h4 class="modal-title">댓글 수정창</h4>
