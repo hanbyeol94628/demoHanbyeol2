@@ -100,15 +100,6 @@
 			
 			var str="";
 
-			/*
-			var pageMaker = {
-					prev : "",
-					next : "",
-					startPage : "",
-					endPage : "",
-					criteriaPage: ""
-			};*/
-			
 			
 			// 이전 버튼 활성화
 			if(pageMaker.prev){
@@ -117,8 +108,8 @@
 			
 			// 페이지 번호
 			for (var i = pageMaker.startPage, len = pageMaker.endPage; i <= len; i++){
-				var strCalss = pageMaker.criteriaPage == i ? 'class=active' : '';
-				str += "<li "+strCalss+"><a href='"+i+"'>"+i+"</a></li>";
+				var strClass = pageMaker.criteria.page == i ? "class='active'" : '';
+				str += "<li "+strClass+"><a href='"+i+"'>"+i+"</a></li>";
 			}
 			
 			// 다음 버튼 활성화
@@ -198,7 +189,7 @@
 					if( result == "modSuccess" ){
 						alert("댓글 수정 완료!");
 						$("#modifyModal").modal("hide");
-						getRepliesPaging();
+						getRepliesPaging(replyPageNum);
 					}
 				}
 				
@@ -232,7 +223,7 @@
 					if(result == "delSuccess"){
 						alert("댓글 삭제 완료!");
 						$("#modifyModal").modal("hide"); // Modal 닫기
-						getRepliesPaging(); // 댓글 목록 갱신
+						getRepliesPaging(replyPageNum); // 댓글 목록 갱신
 					}
 				}
 			});

@@ -82,9 +82,102 @@ desired effect
 						<button type="submit" class="btn btn-danger delBtn"><i class="fa fa-trash"></i>삭제</button>
 					</div>
 				</div>
+				
+				<div class="box box-warning">
+					<div class="box-header with-border">
+						<a class="link-black text-lg"><i class="fa fa-pencil"></i> 댓글 작성</a>
+					</div>
+					<div class="box-body">
+						<form class="form-horizontal">
+							<div class="form-group margin">
+								<div class="col-sm-10">
+									<textarea class="form-control" id="newReplyText" rows="3" placeholder="댓글 내용~" style="resize:none;"></textarea>
+								</div>
+								<div class="col-sm-2">
+									<input class="form-control" id="newReplyWriter" type="text" placeholder="댓글 작성자">
+								</div>
+								<hr/>
+								<div class="col-sm-2">
+									<button type="button" class="btn btn-primary btn-block replyAddBtn"><i class="fa fa-save"></i>저장</button>
+								</div>
+							</div>
+						</form>
+					</div>
+    			</div>
+    			
+    			<div class="box box-success collapsed-box">
+    				<%-- 댓글 유무 / 댓글 갯수 / 댓글 펼치기, 접기 --%>
+    				<div class="box-header with-border">
+    					<a href="" class="link-black text-lg"><i class="fa fa-comments-o margin-r-5 replyCount"></i></a>
+    					<div class="box-tools">
+    						<button type="button" class="btn btn-box-tool" data-widget="collapse">
+    							<i class="fa fa-plus"></i>
+    						</button>
+    					</div>
+    				</div> 
+    				<%-- 댓글 목록 --%>
+    				<div class="box-body repliesDiv">
+    				
+    				</div>
+    				<%-- 댓글 페이징 --%>
+    				<div class="box-footer">
+    					<div class="text-center">
+    						<ul class="pagination pagination-sm no-margin">
+    						
+    						</ul>
+    					</div>
+    				</div>
+    			</div>
+    			
+    			<%-- 댓글 수정 modal --%>
+    			<div class="modal fade" id="modModal">
+    				<div class="modal-dialog">
+    					<div class="modal-content">
+    						<div class="modal-header">
+    							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    								<span aria-hidden="true">&times;</span>
+    							</button>
+    							<h4 class="modal-title">댓글 수정</h4>
+    						</div>
+							<div class="modal-body" data-rno>
+								<input type="hidden" class="reply_no" />
+								<textarea class="form-control" id="replyText" rows="3" style="resize:none"></textarea>
+							</div>    			
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default pull-left" data-dismiss="modal">닫기</button>
+								<button type="button" class="btn btn-primary modalModBtn">수정</button>
+							</div>		
+    					</div>
+    				</div>
+    			</div>
+    			
+    			<%-- 댓글 삭제 modal --%>
+    			<div class="modal fade" id="delModal">
+    				<div class="modal-dialog">
+    					<div class="modal-content">
+    						<div class="modal-header">
+    							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    								<span aria-hidden="true">&times;</span>
+    							</button>
+    							<h4 class="modal-title">댓글 삭제</h4>
+    							<input type="hidden" class="rno"/>
+    						</div>
+							<div class="modal-body" data-rno>
+								<p>댓글을 삭제하시겠습니까?</p>
+								<input type="hidden" class="rno" />
+							</div>    			
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default pull-left" data-dismiss="modal">아니요.</button>
+								<button type="button" class="btn btn-primary modalDelBtn">네. 삭제합니다.</button>
+							</div>		
+    					</div>
+    				</div>
+    			</div>
+    			
+    			
     		</div>
-    	</div>
-	</div>
+		</div>
+	</section>
 	<!-- /.content-wrapper -->
 
 
