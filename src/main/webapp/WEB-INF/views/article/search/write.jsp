@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-
 <%@ include file="../include/head.jsp" %>
 
 <!--
@@ -52,7 +51,7 @@ desired effect
     <section class="content container-fluid">
     
     <div class="col-lg-12">
-		<form role="form" id="writeForm" method="post" action="${path}/article/write">
+		<form role="form" id="writeForm" method="post" action="${path}/article/search/write">
 			<div class="box box-primary">
 				<div class="box-header with-border">
 					<h3 class="box-title">게시글 작성</h3>
@@ -73,6 +72,18 @@ desired effect
 						<label for="writer">작성자</label>
 						<input class="form-control" id="writer" name="writer">
 					</div>
+					
+					<%-- 첨부파일 --%>
+					<div class="form-group">
+						<div class="fileDrop">
+							<br />
+							<br />
+							<br />
+							<br />
+							<p class="text-center"><i class="fa fa-paperclip"></i> 첨부파일을 드래그 해주세요.</p>						
+						</div>
+					</div>
+										
 				</div>
 				<div class="box-footer">
 					<button type="button" class="btn btn-primary"><i class="fa fa-list"></i>목록</button>

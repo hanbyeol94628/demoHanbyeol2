@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.doubles.mvcboard.article.service.ArticleService;
 import com.doubles.mvcboard.commons.paging.Criteria;
 import com.doubles.mvcboard.commons.paging.PageMaker;
 import com.doubles.mvcboard.reply.domain.ReplyVO;
@@ -22,12 +23,13 @@ import com.doubles.mvcboard.reply.service.ReplyService;
 @RestController
 @RequestMapping("/replies")
 public class ReplyController {
-
 	private final ReplyService replyService;
+	private final ArticleService articleService;
 	
 	@Inject
-	public ReplyController(ReplyService replyService) {
+	public ReplyController(ReplyService replyService, ArticleService articleService) {
 		this.replyService = replyService;
+		this.articleService = articleService;
 	}
 	
 	// 댓글 등록
@@ -37,6 +39,12 @@ public class ReplyController {
 		try {
 			replyService.create(replyVO);
 			entity = new ResponseEntity<>("regSuccess", HttpStatus.OK);
+
+			// 해당 글 번호 = replyVO.getArticle_no());
+			int articleNum = replyVO.getArticle_no();
+			int reply_cnt = replyService.countReplies(articleNum);
+			articleService.insertReplyCnt(articleNum, reply_cnt);
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 			entity = new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
@@ -79,6 +87,7 @@ public class ReplyController {
 	public ResponseEntity<String> delete(@PathVariable("reply_no") int reply_no){
 		ResponseEntity<String> entity = null;
 		try {
+			replyService.removeReply(reply_no);
 			replyService.delete(reply_no);
 			entity = new ResponseEntity<>("delSuccess", HttpStatus.OK);
 		}catch (Exception e) {

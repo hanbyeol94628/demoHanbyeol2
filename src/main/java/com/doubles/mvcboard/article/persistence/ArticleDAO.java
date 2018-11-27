@@ -14,11 +14,11 @@ public interface ArticleDAO {
 	
 	void create(ArticleVO articleVO) throws Exception;
 	
-	ArticleVO read(Integer articleNo) throws Exception;
+	ArticleVO read(int article_no) throws Exception;
 	
 	void update(ArticleVO articleVO) throws Exception;
 	
-	void delete(Integer articleNo) throws Exception;
+	void delete(int article_no) throws Exception;
 	
 	List<ArticleVO> listAll() throws Exception;
 	
@@ -33,4 +33,9 @@ public interface ArticleDAO {
 	int countSearchedArticles(SearchCriteria searchCriteria) throws Exception;
 
 	void updateReplyCnt(int article_no, int amount) throws Exception;
+
+	void updateViewCnt(int article_no) throws Exception;
+	
+	void insertReplyCnt(int article_no, int replycnt) throws Exception;
+	
 }

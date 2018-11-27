@@ -14,9 +14,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.doubles.mvcboard.article.domain.ArticleVO;
 import com.doubles.mvcboard.article.service.ArticleService;
-import com.doubles.mvcboard.commons.paging.Criteria;
 import com.doubles.mvcboard.commons.paging.PageMaker;
 import com.doubles.mvcboard.commons.paging.SearchCriteria;
+import com.doubles.mvcboard.reply.service.ReplyService;
 
 @Controller
 @RequestMapping("/article/search")
@@ -25,6 +25,7 @@ public class ArticlePagingSearchController {
 	private static final Logger logger = LoggerFactory.getLogger(ArticlePagingSearchController.class);
 	
 	private ArticleService articleService;
+	private ReplyService replyService;
 	
 	@Inject
 	public ArticlePagingSearchController(ArticleService articleService) {
@@ -38,6 +39,7 @@ public class ArticlePagingSearchController {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCriteria(searchCriteria);
 		pageMaker.setTotalCount(articleService.countSearchedArticles(searchCriteria));
+
 		
 		model.addAttribute("articles", articleService.listSearch(searchCriteria));
 		model.addAttribute("pageMaker", pageMaker);

@@ -11,8 +11,8 @@
 			, title
 			, content
 			, writer
-			, regdate
-			, viewcnt
+			, reg_date
+			, view_cnt
 		) VALUES (
 			#{article_no}
 			, #{title}
@@ -49,7 +49,7 @@
 		]]>
 			<include refid="search" />
 		<![CDATA[
-		ORDER BY article_no DESC, regdate DESC
+		ORDER BY article_no DESC, reg_date DESC
 		LIMIT #{pageStart}, #{perPageNum}
 		]]>
 	</select>
@@ -103,8 +103,8 @@
 			, title
 			, content
 			, writer
-			, regdate
-			, viewcnt
+			, reg_date
+			, view_cnt
 		FROM
 			tbl_article
 		WHERE article_no = #{article_no}
@@ -119,7 +119,7 @@
 			article_no = #{article_no}
 	</update>	
 	
-	<update id="view"></update>
+
 	
 	<delete id="delete" parameterType="ArticleVO">
 		DELETE FROM tbl_article
@@ -133,11 +133,12 @@
 			title,
 			content,
 			writer,
-			regdate,
-			viewcnt
+			reg_date,
+			view_cnt,
+			reply_cnt
 		FROM tbl_article
 		WHERE article_no > 0
-		ORDER BY article_no DESC, regdate DESC
+		ORDER BY article_no DESC, reg_date DESC
 		]]>
 	</select>
 	
@@ -148,11 +149,12 @@
 			title,
 			content,
 			writer,
-			regdate,
-			viewcnt
+			reg_date,
+			view_cnt,
+			reply_cnt
 		FROM tbl_article
 		WHERE article_no > 0
-		ORDER BY article_no DESC, regdate DESC
+		ORDER BY article_no DESC, reg_date DESC
 		LIMIT #{page}, 10
 		]]>
 	</select>
@@ -164,11 +166,12 @@
 			title,
 			content,
 			writer,
-			regdate,
-			viewcnt
+			reg_date,
+			view_cnt,
+			reply_cnt
 		FROM tbl_article
 		WHERE article_no > 0
-		ORDER BY article_no DESC, regdate DESC
+		ORDER BY article_no DESC, reg_date DESC
 		LIMIT #{pageStart}, #{perPageNum}
 		]]>
 	</select>
@@ -179,6 +182,19 @@
 		WHERE article_no = #{article_no}
 	</update>
 	
+	<update id="updateViewCnt">
+		UPDATE tbl_article
+		SET view_cnt = view_cnt + 1
+		WHERE article_no = #{article_no}
+	</update>
+		
+	<update id="insertReplyCnt" parameterType="ArticleVO">
+		UPDATE tbl_article
+		SET
+			reply_cnt = #{replyCnt}
+		WHERE
+			article_no = #{article_no}
+	</update>
 	
 	<resultMap id="ArticleResultMap" type="ArticleVO">
 		<id property="article_no" column="article_no" />

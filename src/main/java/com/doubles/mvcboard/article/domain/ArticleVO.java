@@ -2,6 +2,8 @@ package com.doubles.mvcboard.article.domain;
 
 import java.util.Date;
 
+import com.doubles.mvcboard.reply.service.ReplyService;
+
 public class ArticleVO {
 	
 	private int article_no;
@@ -12,12 +14,32 @@ public class ArticleVO {
 	private int viewCnt;
 	private int replyCnt;
 	
-
+	private String[] files;
+	private int fileCnt;
+	
+	
+	public String[] getFiles() {
+		return files;
+	}
+	
+	public void setFiles(String[] files) {
+		this.files = files;
+		setFileCnt(files.length);
+	}
+	
+	public int getFileCnt() {
+		return fileCnt;
+	}
+	
+	public void setFileCnt(int fileCnt) {
+		this.fileCnt = fileCnt;
+	}
+	
 	
 	public int getReplyCnt() {
 		return replyCnt;
 	}
-	public void setReplyCnt(int replyCnt) {
+	public void setReplyCnt(int replyCnt) throws Exception {
 		this.replyCnt = replyCnt;
 	}
 	public int getArticle_no() {

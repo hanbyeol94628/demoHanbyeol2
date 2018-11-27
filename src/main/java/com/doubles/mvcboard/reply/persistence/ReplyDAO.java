@@ -20,4 +20,5 @@ public interface ReplyDAO {
 	int countReply(int article_no) throws Exception;
 	
 	int getArticleNo(int reply_no) throws Exception;
+	
 }

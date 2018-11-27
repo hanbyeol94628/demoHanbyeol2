@@ -19,4 +19,7 @@ public interface ReplyService {
 	
 	int countReplies(int article_no) throws Exception;
 	
+	void addReply(ReplyVO replyVO) throws Exception;
+	
+	void removeReply(int reply_no) throws Exception;
 }

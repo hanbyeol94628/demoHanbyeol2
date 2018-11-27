@@ -23,12 +23,19 @@ public class ArticleServiceImpl implements ArticleService {
 	
 	@Override
 	public void create(ArticleVO articleVO) throws Exception {
+		
+		//게시글 입력 처리
 		articleDAO.create(articleVO);
-	}
-
-	@Override
-	public ArticleVO read(Integer article_no) throws Exception {
-		return articleDAO.read(article_no);
+		String[] files = articleVO.getFiles();
+		
+		if(files == null) {
+			return;
+		}
+		
+		// 게시글 첨부파일 입력 처리
+		for (String fileName : files) {
+			articleFileDAO.addFile(fileName);
+		}
 	}
 
 	@Override
@@ -37,7 +44,7 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
-	public void delete(Integer article_no) throws Exception {
+	public void delete(int article_no) throws Exception {
 		articleDAO.delete(article_no);
 	}
 
@@ -64,6 +71,18 @@ public class ArticleServiceImpl implements ArticleService {
 	@Override
 	public int countSearchedArticles(SearchCriteria searchCriteria) throws Exception {
 		return articleDAO.countSearchedArticles(searchCriteria);
+	}
+
+	@Override
+	public ArticleVO read(int article_no) throws Exception {
+		
+		articleDAO.updateViewCnt(article_no);
+		return articleDAO.read(article_no);
+	}
+
+	@Override
+	public void insertReplyCnt(int article_no, int replycnt) throws Exception {
+		articleDAO.insertReplyCnt(article_no, replycnt);
 	}
 
 

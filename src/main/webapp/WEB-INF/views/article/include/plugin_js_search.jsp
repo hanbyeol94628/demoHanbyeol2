@@ -8,6 +8,9 @@
 <!-- AdminLTE App -->
 <script src="/dist/js/adminlte.min.js"></script>
 
+<%-- lightbox js --%>
+<script src="/bower_components/lightbox/dist/js/lightbox.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
@@ -32,7 +35,7 @@
 		console.log(formObj);
 		
 		$("#writeBtn").on("click", function(){
-			self.location="/article/paging/write";
+			self.location="/article/search/write";
 		});
 		
 		
@@ -265,6 +268,19 @@
 	
 	
 	
+	// write.jsp 첨부파일 이벤트 처리 js 코드
+	$("#writeForm").submit(function (event){
+		event.preventDefault();
+		var that = $(this);
+		filesSubmit(that);
+	});
+	
+	// 파일 삭제 버튼 클릭 이벤트
+	$(document).on("click", "delBtn", function (event){
+		event.preventDefault();
+		var that = $(this);
+		deleteFileWrtPage(that);
+	});
 		
 		
 		
@@ -296,4 +312,20 @@
 	{{/each}}
 </script>
 
+
+<script id="fileTemplate" type="text/x-handlebars-template">
+	<li>
+		<span class="mailbox-attachment-icon has-img">
+			<img src="{{imgSrc}}" alt="Attachment">
+		</span>
+		<div class="mailbox-attachment-info">
+			<a href="{{originalFileUrl}}" class="mailbox-attachment-name">
+				<i class="fa fa-paperclip"></i> {{originalFileName}}
+			</a>
+			<a href="{{fullName}}" class="btn btn-default btn-xs pull-right delBtn">
+				<i class="fa fa-fw fa-remove"></i>
+			</a>
+		</div>
+	</li>
+</script>
 

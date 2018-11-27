@@ -9,11 +9,9 @@ import com.doubles.mvcboard.commons.paging.SearchCriteria;
 public interface ArticleService {
 	void create(ArticleVO articleVO) throws Exception;
 	
-	ArticleVO read(Integer articleNo) throws Exception;
-	
 	void update(ArticleVO articleVO) throws Exception;
 	
-	void delete(Integer articleNo) throws Exception;
+	void delete(int article_no) throws Exception;
 	
 	List<ArticleVO> listAll() throws Exception;
 	
@@ -23,4 +21,8 @@ public interface ArticleService {
 	
 	List<ArticleVO> listSearch(SearchCriteria searchCriteria) throws Exception;
 	int countSearchedArticles(SearchCriteria searchCriteria) throws Exception;
+
+	ArticleVO read(int aricle_no) throws Exception;
+	
+	void insertReplyCnt(int article_no, int replycnt) throws Exception;
 }

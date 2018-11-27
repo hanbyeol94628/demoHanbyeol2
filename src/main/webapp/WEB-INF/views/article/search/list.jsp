@@ -53,6 +53,7 @@
 									<a href="${path}/article/search/read${pageMaker.makeSearch(pageMaker.criteria.page)}&article_no=${article.article_no}">
 										${article.title}
 									</a>
+									<span class="badge bg-teal"><i class="fa fa-comment-o"></i> + ${article.replyCnt}</span>
 								</td>
 								<td>${article.writer}</td>
 								<td><fmt:formatDate value="${article.regDate}" pattern="yyyy-MM-dd a HH:mm" /></td>

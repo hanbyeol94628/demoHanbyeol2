@@ -15,6 +15,7 @@ public class PageMaker {
 	private boolean next;
 	
 	private int displayPageNum = 10;	// 페이지 번호 개수
+	
 	private Criteria criteria;
 	private SearchCriteria searchCriteria;
 	

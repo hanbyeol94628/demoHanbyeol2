@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.doubles.mvcboard.article.persistence.ArticleDAO;
 import com.doubles.mvcboard.commons.paging.Criteria;
@@ -53,6 +54,23 @@ public class ReplyServiceImpl implements ReplyService{
 	@Override
 	public int countReplies(int article_no) throws Exception {
 		return replyDAO.countReply(article_no);
+	}
+
+	
+	@Transactional
+	@Override
+	public void addReply(ReplyVO replyVO) throws Exception {
+		replyDAO.create(replyVO);
+		articleDAO.updateReplyCnt(replyVO.getArticle_no(), 1);
+	}
+
+
+	@Transactional
+	@Override
+	public void removeReply(int reply_no) throws Exception {
+		int article_no = replyDAO.getArticleNo(reply_no);
+		replyDAO.delete(reply_no);
+		articleDAO.updateReplyCnt(article_no, -1);
 	}
 	
 	

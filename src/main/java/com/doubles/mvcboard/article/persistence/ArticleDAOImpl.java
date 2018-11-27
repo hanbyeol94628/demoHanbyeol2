@@ -31,7 +31,7 @@ public class ArticleDAOImpl implements ArticleDAO {
 	}
 
 	@Override
-	public ArticleVO read(Integer article_no) throws Exception {
+	public ArticleVO read(int article_no) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + ".read", article_no);
 	}
 
@@ -41,7 +41,7 @@ public class ArticleDAOImpl implements ArticleDAO {
 	}
 
 	@Override
-	public void delete(Integer article_no) throws Exception {
+	public void delete(int article_no) throws Exception {
 		sqlSession.delete(NAMESPACE + ".delete", article_no);
 	}
 
@@ -91,6 +91,21 @@ public class ArticleDAOImpl implements ArticleDAO {
 		paramMap.put("amount", amount);
 		
 		sqlSession.update(NAMESPACE + ".updateReplyCnt", paramMap); 
+	}
+
+	@Override
+	public void updateViewCnt(int article_no) throws Exception {
+		sqlSession.update(NAMESPACE + ".updateViewCnt", article_no);
+	}
+
+	@Override
+	public void insertReplyCnt(int article_no, int replycnt) throws Exception {
+		Map<String, Object> paramMap = new HashMap<>();
+		paramMap.put("article_no", article_no);
+		paramMap.put("replyCnt", replycnt);
+		
+		sqlSession.update(NAMESPACE + ".insertReplyCnt", paramMap); 
+		
 	}
 
 
