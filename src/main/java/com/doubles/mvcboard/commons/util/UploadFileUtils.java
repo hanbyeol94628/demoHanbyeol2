@@ -24,15 +24,15 @@ public class UploadFileUtils {
 	// 파일 업로드 처리
 	public static String uploadFile(MultipartFile file, HttpServletRequest request) throws Exception{
 	
+		
 		// 파일명
 		String originalFileName = file.getOriginalFilename();
 		// 파일 데이터
 		byte[] fileData = file.getBytes();
 		
-		
+
 		// 1. 파일명 중복 방지
-		String uuidfileName = getUuidFileName(originalFileName);
-		
+		String uuidfileName = uuidFileName(originalFileName);
 		
 		// 2. 파일 업로드 경로 설정
 			// 기본 경로 추출 (이미지 or 일반 파일)
@@ -40,21 +40,38 @@ public class UploadFileUtils {
 			// 날짜 경로 추출, 날짜 폴더 생성
 		String datePath = getDatePath(rootPath);
 		
-		
 		// 3. 서버에 파일 저장
-			// 파일 객체 생성
-		File target = new File(rootPath + datePath, uuidfileName);
-			// 파일 객체에 파일 데이터 복사
-		FileCopyUtils.copy(fileData, target);
-
+		File targetdir = new File(rootPath + datePath);
+		if(targetdir.exists()) {
+			System.out.println("디렉토리가 존재합니다.");
+		} else {
+			System.out.println("디렉토리가 없습니다.");
+			targetdir.mkdirs();
+		}
+		File target = new File(rootPath + datePath + "//" +uuidfileName);
 		
+		System.out.println("[targetdir]	:" + targetdir);
+		System.out.println("[target]	:" + target);
+		
+		
+		if(target.exists()) {
+			System.out.println("파일이 존재합니다.");
+		}else {
+			System.out.println("파일이 없습니다.");
+			target.createNewFile();
+		}
+		
+		System.out.println(target.exists());
+		FileCopyUtils.copy(fileData, target);// 파일 객체에 파일 데이터 복사
+
 		// 4. 이미지 파일인 경우 썸네일 이미지 생성
 		if(MediaUtils.getMediaType(originalFileName) != null) {
 			uuidfileName = makeThumbnail(rootPath, datePath, uuidfileName);
 		}
-		
+
 		// 5. 파일 저장 경로 치환
 		return replaceSavedFilePath(datePath, uuidfileName);
+
 	
 	}
 	
@@ -111,6 +128,9 @@ public class UploadFileUtils {
 		if(mediaType != null) {
 			return request.getSession().getServletContext().getRealPath(rootPath + "/images"); //이미지 파일 경로
 		}
+		
+		
+		
 		return request.getSession().getServletContext().getRealPath(rootPath + "/files"); // 일반 파일 경로
 	}
 

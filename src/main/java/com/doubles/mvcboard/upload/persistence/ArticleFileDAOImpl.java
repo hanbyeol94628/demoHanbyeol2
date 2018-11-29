@@ -1,5 +1,7 @@
 package com.doubles.mvcboard.upload.persistence;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -19,6 +21,16 @@ public class ArticleFileDAOImpl implements ArticleFileDAO{
 	
 	@Override
 	public void addFile(String fileName) throws Exception {
-		sqlSession.insert(NAMESPACE + ".addFile", fileName)
+		sqlSession.insert(NAMESPACE + ".addFile", fileName);
+	}
+
+	@Override
+	public List<String> getArticleFiles(int article_no) throws Exception {
+		return sqlSession.selectList(NAMESPACE + ".getArticleFiles", article_no);
+	}
+
+	@Override
+	public void deleteFiles(int article_no) throws Exception {
+		sqlSession.delete(NAMESPACE + ".deleteFiles", article_no);
 	}
 }

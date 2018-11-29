@@ -5,20 +5,24 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.doubles.mvcboard.article.domain.ArticleVO;
 import com.doubles.mvcboard.article.persistence.ArticleDAO;
 import com.doubles.mvcboard.commons.paging.Criteria;
 import com.doubles.mvcboard.commons.paging.SearchCriteria;
+import com.doubles.mvcboard.upload.persistence.ArticleFileDAO;
 
 @Service
 public class ArticleServiceImpl implements ArticleService {
 
 	private final ArticleDAO articleDAO;
+	private ArticleFileDAO articleFileDAO;
 
 	@Inject
-	public ArticleServiceImpl(ArticleDAO articleDAO) {
+	public ArticleServiceImpl(ArticleDAO articleDAO, ArticleFileDAO articleFileDAO) {
 		this.articleDAO = articleDAO;
+		this.articleFileDAO = articleFileDAO;
 	}
 	
 	@Override
@@ -43,8 +47,10 @@ public class ArticleServiceImpl implements ArticleService {
 		articleDAO.update(articleVO);
 	}
 
+	@Transactional
 	@Override
 	public void delete(int article_no) throws Exception {
+		articleFileDAO.deleteFiles(article_no);
 		articleDAO.delete(article_no);
 	}
 

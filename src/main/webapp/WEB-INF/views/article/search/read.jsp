@@ -58,6 +58,13 @@ desired effect
 				<div class="box-body" style="height: 700px">
 					${article.content}
 				</div>
+				
+				<%-- 업로드 파일 정보 영역 --%>
+				<div class="box-footer uploadFiles">
+					<ul class="mailbox-attachments clearfix uploadedFileList"></ul>
+				</div>
+				
+				
 				<div class="box-footer">
 					<div class="user-block">
 						<img class="img-sircle img-bordered-sm" src="/dist/img/user1-128x128.jpg" alt="user image">
@@ -267,6 +274,17 @@ desired effect
 
 <!-- ./wrapper -->
 <%@ include file="../include/plugin_js_search.jsp" %>
-
+<script id="fileTemplate" type="text/x-handlebars-template">
+	<li data-src="{{fullName}}">
+		<span class="mailbox-attachment-icon has-img">
+			<img src="{{imgSrc}}" alt="Attachment">
+		</span>
+		<div class="mailbox-attachment-info">
+			<a href="{{originalFileUrl}}" class="mailbox-attachment-name">
+				<i class="fa fa-paperclip"></i> {{originalFileName}}
+			</a>
+		</div>
+	</li>
+</script>
 </body>
 </html>

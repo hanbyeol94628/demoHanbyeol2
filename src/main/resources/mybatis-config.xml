@@ -5,6 +5,7 @@
 
 	<typeAliases>
 		<typeAlias type="com.doubles.mvcboard.article.domain.ArticleVO" alias="ArticleVO"/>
+		<typeAlias type="com.doubles.mvcboard.upload.domain.ArticleFileVO" alias="ArticleFileVO"/>
 		<typeAlias type="com.doubles.mvcboard.reply.domain.ReplyVO" alias="ReplyVO"/>
 	</typeAliases>
 	

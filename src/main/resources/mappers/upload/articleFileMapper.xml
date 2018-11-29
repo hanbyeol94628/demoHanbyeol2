@@ -9,10 +9,28 @@
 		INSERT INTO tbl_article_file (
 			file_name
 			, article_no
+			, reg_date
 		) VALUES (
 			#{fileName}
 			, LAST_INSERT_ID()
+			, now()
 		)
 	</insert>
+	
+	<select id="getArticleFiles" resultType="string">
+		SELECT file_name
+		FROM tbl_article_file
+		WHERE article_no = #{article_no}
+		ORDER BY reg_date
+	</select>
+	
+	<delete id="deleteFiles">
+		DELETE FROM tbl_article_file
+		WHERE article_no = #{article_no}
+	</delete>
+	
+	
+		
+	
 	
 </mapper>

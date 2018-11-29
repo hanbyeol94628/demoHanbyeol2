@@ -19,8 +19,9 @@
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect. -->
   <link rel="stylesheet" href="/dist/css/skins/skin-blue.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
   <script type="text/javascript" src="/dist/js/article_file_upload.js"></script>
-
+ 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -32,14 +33,33 @@
   <%-- lightbox css --%>
   <link rel="stylesheet" href="/bower_components/lightbox/dist/css/lightbox.css">
   
+<!-- REQUIRED JS SCRIPTS -->
+
+<!-- jQuery 3 (cdn) -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+<!-- Bootstrap 3.3.7 -->
+<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<!-- AdminLTE App -->
+<script src="/dist/js/adminlte.min.js"></script>
+
+<!-- 핸들바 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+
+<!-- lightbox js -->
+<script src="/bower_components/lightbox/dist/js/lightbox.js"></script>
+
+  
+  
   <style>
-  .fileDrop{
+  .fileDrop {
   	width : 100%;
   	height : 200px;
   	border : 2px dotted #0b58a2;
   }
-  
   </style>
+  
   <!-- Google Font -->
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">

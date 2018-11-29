@@ -1,17 +1,4 @@
 ﻿
-<!-- REQUIRED JS SCRIPTS -->
-
-<!-- jQuery 3 -->
-<script src="/bower_components/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- AdminLTE App -->
-<script src="/dist/js/adminlte.min.js"></script>
-
-<%-- lightbox js --%>
-<script src="/bower_components/lightbox/dist/js/lightbox.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
@@ -26,10 +13,14 @@
 	} else if (result == "delSuccess"){
 		alert("게시글 삭제가 완료되었습니다.");
 	}
+	
 </script>
 
 <script>
 	$(document).ready(function(){
+
+		var article_no = "${article.article_no}";
+		getFiles(article_no);
 		
 		var formObj = $("form[role='form']");
 		console.log(formObj);
@@ -46,6 +37,27 @@
 		});
 		
 		$(".delBtn").on("click", function(){
+			
+			// 댓글이 달린 게시글 삭제 처리 방지
+			var replyCnt = $(".replyDiv").length;
+			if(replyCnt > 0){
+				alert("댓글이 달린 게시물은 삭제할 수 없습니다.");
+				return;
+			}
+			
+			// 첨부 파일명들을 배열에 저장
+			var arr = [];
+			$(".uploadedFileList li").each(function (){
+				arr.push($(this).attr("data-src"));
+			});
+			
+			// 첨부파일 삭제 요청
+			if (arr.length > 0){
+				$.post("/article/file/deleteAll", {files: arr}, function(){
+					
+				});
+			}
+			
 			formObj.attr("action", "/article/search/remove");
 			formObj.submit();
 		});
@@ -267,29 +279,20 @@
 	});
 	
 	
+
+		
 	
-	// write.jsp 첨부파일 이벤트 처리 js 코드
-	$("#writeForm").submit(function (event){
-		event.preventDefault();
-		var that = $(this);
-		filesSubmit(that);
-	});
 	
-	// 파일 삭제 버튼 클릭 이벤트
-	$(document).on("click", "delBtn", function (event){
-		event.preventDefault();
-		var that = $(this);
-		deleteFileWrtPage(that);
-	});
-		
-		
-		
-		
-		
-		
+	
+	
+	
+	
+	
+	
 	});
 </script>
 
+  
 <script id="replyTemplate" type="text/x-handlebars-template">
 	{{#each.}}
 	<div class="post replyDiv" data-reply_no={{reply_no}}>
@@ -328,4 +331,89 @@
 		</div>
 	</li>
 </script>
+ <%-- 파일 입출력 관련 --%>
+<script>
+	
+	// 파일 목록 : 게시글 조회, 수정 페이지
+	function getFiles(article_no){
+		$.getJSON("/article/file/list/" + article_no, function (list){
+			if(list.length === 0){
+				$(".uploadedFileList").html("<span class='noAttach'>첨부파일이 없습니다.</span>")
+			}
+			$(list).each(function (){
+				printFiles(this);
+			})
+		});
+	}
+
+	// write.jsp 첨부파일 이벤트 처리 js 코드
+	$("#writeForm").submit(function (event){
+		event.preventDefault();
+		var that = $(this);
+		fileSubmit(that);
+	});
+	
+	//  handlebars 파일 템플릿 컴파일
+	var fileTemplate = Handlebars.compile($("#fileTemplate").html());
+	
+	
+	// 첨부파일 출력
+	function printFiles(data){
+		// 파일 정보 처리
+		var fileInfo = getFileInfo(data);
+		// Handlebars 파일 템플릿에 파일 정보를 바인딩하고 HTML 생성
+		var html = fileTemplate(fileInfo);
+		// Handlebars 파일 템플릿 컴파일을 통해 생성된 HTML을 DOM에 주입
+		$(".uploadedFileList").append(html);
+		// 이미지 파일인 경우 파일 템플릿에 lightbox 속성 추가
+		if (fileInfo.fullName.substr(12,2) === "s_"){
+			// 마지막에 추가된 첨부파일 템플릿 선택자
+			var that = $(".uploadedFileList li").last();
+			// lightbox 속성 추가
+			that.find(".mailbox-attachment-name").attr("data-lightbox", "uploadImages");
+			// 파일 아이콘에서 이미지 아이콘으로 변경
+			that.find(".fa-paperclip").attr("class", "fa fa-camera");
+		}
+	}
+	
+	
+	// 파일 정보 처리
+	function getFileInfo(fullName){
+		
+		var originalFileName;	// 화면에 출력할 파일명
+		var imgSrc;				// 썸네일 or 파일 아이콘 이미지 파일 출력 요청 URL
+		var originalFileUrl;	// 원본파일 요청 URL
+		var uuidFileName; 		// 날짜 경로 제외한 나머지 파일명 (UUID_파일명.확장자)
+		
+		// 이미지 파일일 때
+		if(checkImageType(fullName)){
+			imgSrc = "/article/file/display?fileName=" + fullName; // 썸네일 링크
+			uuidFileName = fullName.substr(14);
+			var originalImg = fullName.substr(0, 12) + fullName.substr(14);
+			// 원본 이미지 요청 링크
+			originalFileUrl = "/article/file/display?fileName=" + originalImg;
+		} else {
+			imgSrc = "/dist/img/file-icon.png";
+			uuidFileName = fullName.substr(12);
+			// 파일 다운로드 요청 링크
+			originalFileUrl = "/article/file/display?fileName=" + fullName;
+		}
+		
+		originalFileName = uuidFileName.substr(uuidFileName.indexOf("_") + 1);
+		
+		return {originalFileName: originalFileName, imgSrc: imgSrc, originalFileUrl: originalFileUrl, fullName: fullName};
+	}
+	
+	
+	// 이미지 파일 유무 확인
+	function checkImageType(fullName){
+		var pattern = /jpg$|gif$|png$|jpeg$/i;
+		return fullName.match(pattern);
+	}
+	
+	
+	
+
+</script>
+ 
 
