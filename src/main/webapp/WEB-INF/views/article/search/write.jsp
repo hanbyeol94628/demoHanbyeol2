@@ -64,8 +64,30 @@ desired effect
 					
 					<div class="form-group">
 						<label for="content">내용</label>
-						<textarea class="form-control" id="content" name="content" rows="30" 
-							placeholder="내용을 입력하세요" style="resize: none;"></textarea>
+						<textarea name="content" id="editor1" rows="10" cols="80">
+							This is my textarea to be replaced with CKEditor.
+						</textarea>
+						<script>
+							var editorConfig = {
+									filebrwoserUploadUrl : "/resources/ckeditor/uploadImg",
+							};
+							
+							CKEDITOR.on('dialogDefinition', function(ev){
+								var dialogName = ev.data.name;
+								var dialogDefinition = ev.data.definition;
+								
+								switch(dialogName){
+									case 'image' : // Image Properties dialog
+									// dialogDefinition.removeContents('info');
+									dialogDefinition.removeContents('Link');
+									dialogDefinition.removeContents('advanced');
+									break;
+								}
+							});
+							
+							CKEDITOR.replace('editor1', editorConfig);
+						
+						</script>
 					</div>
 					
 					<div class="form-group">

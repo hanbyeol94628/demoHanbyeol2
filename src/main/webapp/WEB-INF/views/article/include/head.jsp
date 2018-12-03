@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="/dist/css/skins/skin-blue.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
   <script type="text/javascript" src="/dist/js/article_file_upload.js"></script>
- 
+
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -50,7 +50,8 @@
 <!-- lightbox js -->
 <script src="/bower_components/lightbox/dist/js/lightbox.js"></script>
 
-  
+<!-- CK Editor -->
+<script src="/resources/ckeditor/ckeditor.js"></script>
   
   <style>
   .fileDrop {

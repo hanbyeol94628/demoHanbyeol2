@@ -55,8 +55,11 @@ desired effect
     			<div class="box-header with-border">
 					<h3 class="box-title">글 제목 : ${article.title}</h3>
 				</div>
-				<div class="box-body" style="height: 700px">
+				
+				<div class="box-body" style="overflow:hidden">
 					${article.content}
+				</div>
+				<div class="editor box-body">
 				</div>
 				
 				<%-- 업로드 파일 정보 영역 --%>

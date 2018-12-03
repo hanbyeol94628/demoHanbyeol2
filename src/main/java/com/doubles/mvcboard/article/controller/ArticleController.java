@@ -30,14 +30,14 @@ public class ArticleController {
 		this.articleService = articleService;
 	}
 	
-	// 등록 페이지 이동
+	// �벑濡� �럹�씠吏� �씠�룞
 	@RequestMapping(value="/write", method=RequestMethod.GET)
 	public String writeGET() {
 		logger.info("normal writeGET() called...");
-		return "/article/normal/write";
+		return "/article/normal/write.jsp";
 	}
 	
-	// 등록 처리
+	// �벑濡� 泥섎━
 	@RequestMapping(value="/write", method=RequestMethod.POST)
 	public String writePOST(ArticleVO articleVO, RedirectAttributes redirectAttributes) throws Exception{
 		logger.info("normal writePOST() called...");
@@ -45,61 +45,61 @@ public class ArticleController {
 		articleService.create(articleVO);
 		redirectAttributes.addFlashAttribute("msg", "regSuccess");
 		
-		return "redirect:/article/normal/list";
+		return "redirect:/article/normal/list.jsp";
 	}
 	
-	// 목록 페이지 이동
+	// 紐⑸줉 �럹�씠吏� �씠�룞
 	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public String list(Model model) throws Exception{
 		logger.info("normal list() called...");
 		model.addAttribute("articles", articleService.listAll());
 		
-		return "/article/normal/list";
+		return "/article/normal/list.jsp";
 	}
-	// 페이징
+	// �럹�씠吏�
 	@RequestMapping(value="/listCriteria", method=RequestMethod.GET)
 	public String listCriteria(Model model, Criteria criteria) throws Exception{
 		logger.info("normal listCriteria()...");
 		model.addAttribute("articles", articleService.listCriteria(criteria));
-		return "/article/normal/list_criteria";
+		return "/article/normal/list_criteria.jsp";
 	}
 		
 		
-	// 조회 페이지 이동
+	// 議고쉶 �럹�씠吏� �씠�룞
 	@RequestMapping(value="/read", method=RequestMethod.GET)
 	public String read(@RequestParam("article_no") int article_no,
 						Model model) throws Exception{
 		logger.info("normal read() called...");
 		model.addAttribute("article", articleService.read(article_no));
-		return "/article/normal/read";
+		return "/article/normal/read.jsp";
 	}
 	
-	// 수정 페이지 이동
+	// �닔�젙 �럹�씠吏� �씠�룞
 	@RequestMapping(value="/modify", method=RequestMethod.GET)
 	public String modifyGET(@RequestParam("article_no") int article_no, Model model) throws Exception{
 		logger.info("normal modifyGet() called...");
 		model.addAttribute("article", articleService.read(article_no));
-		return "/article/normal/modify";
+		return "/article/normal/modify.jsp";
 	}
 	
-	// 수정 처리
+	// �닔�젙 泥섎━
 	@RequestMapping(value="/modify", method=RequestMethod.POST)
 	public String modifyPOST(ArticleVO articleVO, RedirectAttributes redirectAttributes) throws Exception{
 		logger.info("normal modifyPOST() called...");
 		articleService.update(articleVO);
 		redirectAttributes.addFlashAttribute("msg", "modSuccess");
-		return "redirect:/article/normal/list";
+		return "redirect:/article/normal/list.jsp";
 	}
 	
 	
 	
-	// 삭제 처리
+	// �궘�젣 泥섎━
 	@RequestMapping(value="/remove", method=RequestMethod.POST)
 	public String remove(@RequestParam("article_no") int article_no, RedirectAttributes redirectAttributes) throws Exception{
 		logger.info("normal remove...");
 		articleService.delete(article_no);
 		redirectAttributes.addFlashAttribute("msg", "delSuccess");
-		return "redirect:/article/normal/list";
+		return "redirect:/article/normal/list.jsp";
 	}
 	
 	

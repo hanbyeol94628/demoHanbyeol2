@@ -18,6 +18,7 @@
 
 <script>
 	$(document).ready(function(){
+		
 
 		var article_no = "${article.article_no}";
 		getFiles(article_no);

@@ -48,14 +48,14 @@ public class ArticlePagingSearchController {
 	}
 	
 	
-	// 등록 페이지 이동
+	// �벑濡� �럹�씠吏� �씠�룞
 	@RequestMapping(value="/write", method=RequestMethod.GET)
 	public String writeGET() {
 		logger.info("write GET...");
 		return "/article/search/write";
 	}
 		
-	// 등록 처리
+	// �벑濡� 泥섎━
 	@RequestMapping(value="/write", method=RequestMethod.POST)
 	public String writePOST(ArticleVO articleVO, RedirectAttributes redirectAttributes) throws Exception{
 		logger.info("paging writePOST() called...");
@@ -66,7 +66,7 @@ public class ArticlePagingSearchController {
 	}
 	
 	
-	//조회 
+	//議고쉶 
 	@RequestMapping(value="/read", method=RequestMethod.GET)
 	public String read(@RequestParam("article_no") int article_no,
 					   @ModelAttribute("searchCriteria") SearchCriteria searchCriteria,
@@ -78,7 +78,7 @@ public class ArticlePagingSearchController {
 	}
 	
 	
-	////수정 페이지 이동
+	////�닔�젙 �럹�씠吏� �씠�룞
 	@RequestMapping(value="/modify", method=RequestMethod.GET)
 	public String modifyGETpaging(@RequestParam("article_no") int article_no,
 							@ModelAttribute("searchCriteria") SearchCriteria searchCriteria,
@@ -88,7 +88,7 @@ public class ArticlePagingSearchController {
 		model.addAttribute("article", articleService.read(article_no));
 		return "/article/search/modify";
 	}
-	//// 수정 처리
+	//// �닔�젙 泥섎━
 	@RequestMapping(value="/modify", method=RequestMethod.POST)
 	public String modifyPOSTpaging(ArticleVO articleVO, 
 							 SearchCriteria searchCriteria,
@@ -107,7 +107,7 @@ public class ArticlePagingSearchController {
 	
 	
 	
-	//// 삭제 처리
+	//// �궘�젣 泥섎━
 	@RequestMapping(value="/remove", method=RequestMethod.POST)
 	public String removepaging(@RequestParam("article_no") int article_no, 
 						 SearchCriteria searchCriteria,
